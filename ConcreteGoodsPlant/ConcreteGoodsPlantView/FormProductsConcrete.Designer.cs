@@ -103,7 +103,7 @@
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonAdd);
             this.Name = "FormProductsConcrete";
-            this.Text = "FormProductsConcrete";
+            this.Text = "Изделия";
             this.Load += new System.EventHandler(this.FormComponents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);

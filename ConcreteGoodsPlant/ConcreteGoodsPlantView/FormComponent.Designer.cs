@@ -36,9 +36,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(304, 72);
+            this.buttonCancel.Location = new System.Drawing.Point(405, 89);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(70, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(93, 28);
             this.buttonCancel.TabIndex = 0;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(222, 73);
+            this.buttonSave.Location = new System.Drawing.Point(296, 90);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(68, 21);
+            this.buttonSave.Size = new System.Drawing.Size(91, 26);
             this.buttonSave.TabIndex = 1;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -57,30 +59,33 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(12, 41);
+            this.labelName.Location = new System.Drawing.Point(16, 50);
+            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(57, 13);
+            this.labelName.Size = new System.Drawing.Size(72, 17);
             this.labelName.TabIndex = 2;
             this.labelName.Text = "Название";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(74, 38);
+            this.textBoxName.Location = new System.Drawing.Point(99, 47);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(290, 20);
+            this.textBoxName.Size = new System.Drawing.Size(385, 22);
             this.textBoxName.TabIndex = 3;
             // 
             // FormComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 109);
+            this.ClientSize = new System.Drawing.Size(527, 134);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonCancel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormComponent";
-            this.Text = "FormComponent";
+            this.Text = "Компонент";
             this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
