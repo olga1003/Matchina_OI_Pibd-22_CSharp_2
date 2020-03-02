@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConcreteGoodsPlantFileImplement.Models
+namespace ConcreteGoodsPlantListImplement.Models
 {
     /// <summary>
     /// Сколько компонентов, требуется при изготовлении изделия
