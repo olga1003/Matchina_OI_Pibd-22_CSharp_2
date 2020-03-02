@@ -144,6 +144,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConcreteGoodsPlantDatabaseImplement\ConcreteGoodsPlantDatabaseImplement.csproj">
+      <Project>{12aa8010-f740-41e8-8ed5-c19a2c02ec84}</Project>
+      <Name>ConcreteGoodsPlantDatabaseImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConcreteGoodsPlantFileImplement\ConcreteGoodsPlantFileImplement.csproj">
       <Project>{de84dd00-6a20-4df1-8f69-1bf0b335c5d0}</Project>
       <Name>ConcreteGoodsPlantFileImplement</Name>

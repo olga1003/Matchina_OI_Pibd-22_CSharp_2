@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcreteGoodsPlantListImple
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteGoodsPlantFileImplement", "ConcreteGoodsPlantFileImplement\ConcreteGoodsPlantFileImplement.csproj", "{DE84DD00-6A20-4DF1-8F69-1BF0B335C5D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteGoodsPlantDatabaseImplement", "ConcreteGoodsPlantDatabaseImplement\ConcreteGoodsPlantDatabaseImplement.csproj", "{12AA8010-F740-41E8-8ED5-C19A2C02EC84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DE84DD00-6A20-4DF1-8F69-1BF0B335C5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE84DD00-6A20-4DF1-8F69-1BF0B335C5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE84DD00-6A20-4DF1-8F69-1BF0B335C5D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
