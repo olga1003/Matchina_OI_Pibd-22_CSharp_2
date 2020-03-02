@@ -18,8 +18,7 @@ namespace ConcreteGoodsPlantFileImplement.Implements
         }
         public void CreateOrUpdate(ComponentBindingModel model)
         {
-            Component element = source.Components.FirstOrDefault(rec => rec.ComponentName
-           == model.ComponentName && rec.Id != model.Id);
+            Component element = source.Components.FirstOrDefault(rec => rec.ComponentName == model.ComponentName && rec.Id != model.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть компонент с таким названием");
