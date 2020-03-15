@@ -4,15 +4,18 @@ using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.Enums;
 using System.Collections.Generic;
 using System.Text;
+using PlantBusinessLogic.BindingModels.ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 
 namespace PlantBusinessLogic.BusinessLogics
 {
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IWarehouseLogic warehouseLogic;
+        public MainLogic(IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
         {
             this.orderLogic = orderLogic;
+            this.warehouseLogic = warehouseLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -99,6 +102,10 @@ namespace PlantBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillWarehouse(WarehouseComponentBindingModel model)
+        {
+            warehouseLogic.AddComponent(model);
         }
     }
 }
