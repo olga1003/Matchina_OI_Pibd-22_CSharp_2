@@ -14,7 +14,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public decimal Price { get; set; }
 
         public virtual List<Order> Orders { get; set; }
-        public virtual ProductComponent  ProductComponent { get; set; }
-
+        public virtual List<ProductComponent> ProductComponents { get; set; }
     }
 }
