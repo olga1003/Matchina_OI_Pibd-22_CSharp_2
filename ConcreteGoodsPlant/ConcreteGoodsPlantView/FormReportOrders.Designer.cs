@@ -95,14 +95,14 @@
             this.reportViewer.Location = new System.Drawing.Point(12, 51);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(767, 387);
+            this.reportViewer.Size = new System.Drawing.Size(976, 387);
             this.reportViewer.TabIndex = 6;
             // 
             // FormReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1000, 450);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.ButtonToPdf);
             this.Controls.Add(this.ButtonMake);

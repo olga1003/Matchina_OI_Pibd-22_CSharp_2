@@ -12,6 +12,7 @@ namespace ConcreteGoodsPlantView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
+        private readonly ReportLogic report;
         private readonly IOrderLogic orderLogic;
 
         public FormMain(MainLogic logic, IOrderLogic orderLogic)
@@ -123,7 +124,7 @@ namespace ConcreteGoodsPlantView
 
         private void списокКомпонентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+          using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
