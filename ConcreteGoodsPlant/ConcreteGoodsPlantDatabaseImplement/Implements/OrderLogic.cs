@@ -4,6 +4,7 @@ using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.ViewModels;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using ConcreteGoodsPlantDatabaseImplement.Models;
 using System.Linq;
 
@@ -60,21 +61,17 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                .Where(
-                    rec => model == null
-                    || (rec.Id == model.Id && model.Id.HasValue)
-                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
-                )
+                .Include(rec => rec.Product)
+                .Where(rec => model == null || rec.Id == model.Id)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
-                    ProductId = rec.ProductId,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                    Status = rec.Status,
+                    ProductName = rec.Product.ProductName,
                     Count = rec.Count,
                     Sum = rec.Sum,
-                    ProductName = rec.Product.ProductName
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement
                 })
             .ToList();
             }
