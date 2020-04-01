@@ -60,17 +60,22 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                .Where(rec => model == null || rec.Id == model.Id)
+                .Where(
+                    rec => model == null
+                    || (rec.Id == model.Id && model.Id.HasValue)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                )
                 .Select(rec => new OrderViewModel
-                 {
-                     Id = rec.Id,
-                     ProductName = context.Products.FirstOrDefault((r) => r.Id == rec.ProductId).ProductName,
-                     Count = rec.Count,
-                     Sum = rec.Sum,
-                     Status = rec.Status,
-                     DateCreate = rec.DateCreate,
-                     DateImplement = rec.DateImplement
-                 })
+                {
+                    Id = rec.Id,
+                    ProductId = rec.ProductId,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
+                    Status = rec.Status,
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    ProductName = rec.Product.ProductName
+                })
             .ToList();
             }
         }
