@@ -32,13 +32,15 @@ namespace PlantBusinessLogic.BusinessLogics
                         JustificationValues = JustificationValues.Center
                     }
                 }));
-                foreach (var component in info.Components)
+                foreach (var product in info.Products)
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<string> { component.ComponentName },
+                        Texts = new List<string> { product.ProductName, " - " + product.Price.ToString() },
+
                         TextProperties = new WordParagraphProperties
                         {
+                            Bold = true,
                             Size = "24",
                             JustificationValues = JustificationValues.Both
                         }
@@ -80,10 +82,9 @@ namespace PlantBusinessLogic.BusinessLogics
                     RunProperties properties = new RunProperties();
                     properties.AppendChild(new FontSize
                     {
-                        Val =
-                   paragraph.TextProperties.Size
+                        Val = paragraph.TextProperties.Size
                     });
-                    if (paragraph.TextProperties.Bold)
+                    if (!run.StartsWith(" - ") && paragraph.TextProperties.Bold)
                     {
                         properties.AppendChild(new Bold());
                     }

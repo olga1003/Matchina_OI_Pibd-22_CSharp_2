@@ -14,16 +14,16 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                Component element = context.Components.FirstOrDefault(rec =>
-               rec.ComponentName == model.ComponentName && rec.Id != model.Id);
+                Component element = context.Components.FirstOrDefault(rec => rec.ComponentName == model.ComponentName && rec.Id != model.Id);
+
                 if (element != null)
                 {
                     throw new Exception("Уже есть компонент с таким названием");
                 }
                 if (model.Id.HasValue)
                 {
-                    element = context.Components.FirstOrDefault(rec => rec.Id ==
-                   model.Id);
+                    element = context.Components.FirstOrDefault(rec => rec.Id == model.Id);
+
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
@@ -42,8 +42,8 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                Component element = context.Components.FirstOrDefault(rec => rec.Id ==
-               model.Id);
+                Component element = context.Components.FirstOrDefault(rec => rec.Id == model.Id);
+
                 if (element != null)
                 {
                     context.Components.Remove(element);

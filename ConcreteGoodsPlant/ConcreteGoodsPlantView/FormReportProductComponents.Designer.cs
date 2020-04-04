@@ -28,81 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ButtonSaveToExcel = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ButtonSaveToPDF = new System.Windows.Forms.Button();
+            this.ReportProductComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // ButtonSaveToExcel
+            // reportViewer
             // 
-            this.ButtonSaveToExcel.Location = new System.Drawing.Point(12, 12);
-            this.ButtonSaveToExcel.Name = "ButtonSaveToExcel";
-            this.ButtonSaveToExcel.Size = new System.Drawing.Size(194, 30);
-            this.ButtonSaveToExcel.TabIndex = 0;
-            this.ButtonSaveToExcel.Text = "Сохранить  в Excel";
-            this.ButtonSaveToExcel.UseVisualStyleBackColor = true;
-            this.ButtonSaveToExcel.Click += new System.EventHandler(this.ButtonSaveToExcel_Click);
+            reportDataSource1.Name = "DataSetProductComponent";
+            reportDataSource1.Value = this.ReportProductComponentViewModelBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "ConcreteGoodsPlantView.ReportOrders.rdlc";
+            this.reportViewer.Location = new System.Drawing.Point(3, 50);
+            this.reportViewer.Name = "reportViewer";
+            this.reportViewer.ServerReport.BearerToken = null;
+            this.reportViewer.Size = new System.Drawing.Size(948, 503);
+            this.reportViewer.TabIndex = 1;
+            this.reportViewer.Load += new System.EventHandler(this.reportViewer_Load);
             // 
-            // dataGridView
+            // ButtonSaveToPDF
             // 
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dataGridView.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView.Location = new System.Drawing.Point(3, 48);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowHeadersWidth = 51;
-            this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(717, 399);
-            this.dataGridView.TabIndex = 1;
+            this.ButtonSaveToPDF.Location = new System.Drawing.Point(12, 12);
+            this.ButtonSaveToPDF.Name = "ButtonSaveToPDF";
+            this.ButtonSaveToPDF.Size = new System.Drawing.Size(194, 30);
+            this.ButtonSaveToPDF.TabIndex = 6;
+            this.ButtonSaveToPDF.Text = "Сохранить  в PDF";
+            this.ButtonSaveToPDF.UseVisualStyleBackColor = true;
+            this.ButtonSaveToPDF.Click += new System.EventHandler(this.ButtonSaveToPDF_Click);
             // 
-            // Column1
+            // ReportProductComponentViewModelBindingSource
             // 
-            this.Column1.HeaderText = "Компонент";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 250;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Изделие";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Количество";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 200;
+            this.ReportProductComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportProductComponentViewModel);
             // 
             // FormReportProductComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 450);
-            this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.ButtonSaveToExcel);
+            this.ClientSize = new System.Drawing.Size(973, 565);
+            this.Controls.Add(this.reportViewer);
+            this.Controls.Add(this.ButtonSaveToPDF);
             this.Name = "FormReportProductComponents";
-            this.Text = "Компоненты по изделиям";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.Text = "Компоненты и изделия";    
+            ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button ButtonSaveToExcel;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Button ButtonSaveToPDF;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.BindingSource ReportProductComponentViewModelBindingSource;
     }
 }

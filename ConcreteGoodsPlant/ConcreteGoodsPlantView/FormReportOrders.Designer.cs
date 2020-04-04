@@ -33,8 +33,12 @@
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.ButtonMake = new System.Windows.Forms.Button();
-            this.ButtonToPdf = new System.Windows.Forms.Button();
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ButtonToExcel = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -79,32 +83,59 @@
             this.ButtonMake.UseVisualStyleBackColor = true;
             this.ButtonMake.Click += new System.EventHandler(this.ButtonMake_Click);
             // 
-            // ButtonToPdf
+            // ButtonToExcel
             // 
-            this.ButtonToPdf.Location = new System.Drawing.Point(630, 12);
-            this.ButtonToPdf.Name = "ButtonToPdf";
-            this.ButtonToPdf.Size = new System.Drawing.Size(149, 33);
-            this.ButtonToPdf.TabIndex = 5;
-            this.ButtonToPdf.Text = "В Pdf";
-            this.ButtonToPdf.UseVisualStyleBackColor = true;
-            this.ButtonToPdf.Click += new System.EventHandler(this.ButtonToPdf_Click);
+            this.ButtonToExcel.Location = new System.Drawing.Point(630, 12);
+            this.ButtonToExcel.Name = "ButtonToExcel";
+            this.ButtonToExcel.Size = new System.Drawing.Size(149, 33);
+            this.ButtonToExcel.TabIndex = 5;
+            this.ButtonToExcel.Text = "В Excel";
+            this.ButtonToExcel.UseVisualStyleBackColor = true;
+            this.ButtonToExcel.Click += new System.EventHandler(this.ButtonToExcel_Click);
             // 
-            // reportViewer
+            // dataGridView
             // 
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "ConcreteGoodsPlantView.ReportOrders.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(12, 51);
-            this.reportViewer.Name = "reportViewer";
-            this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(976, 387);
-            this.reportViewer.TabIndex = 6;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Date,
+            this.ProductName,
+            this.Price});
+            this.dataGridView.Location = new System.Drawing.Point(12, 60);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowHeadersWidth = 51;
+            this.dataGridView.RowTemplate.Height = 28;
+            this.dataGridView.Size = new System.Drawing.Size(800, 368);
+            this.dataGridView.TabIndex = 6;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Дата";
+            this.Date.MinimumWidth = 6;
+            this.Date.Name = "Date";
+            this.Date.Width = 250;
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Заказ";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.Width = 250;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.Width = 250;
             // 
             // FormReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
-            this.Controls.Add(this.reportViewer);
-            this.Controls.Add(this.ButtonToPdf);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.ButtonToExcel);
             this.Controls.Add(this.ButtonMake);
             this.Controls.Add(this.dateTimePickerTo);
             this.Controls.Add(this.dateTimePickerFrom);
@@ -112,6 +143,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormReportOrders";
             this.Text = "Заказы клиентов";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,7 +156,10 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.Button ButtonMake;
-        private System.Windows.Forms.Button ButtonToPdf;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.Button ButtonToExcel;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }
