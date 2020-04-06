@@ -315,7 +315,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReportOrders.rdlc" />
+    <EmbeddedResource Include="ReportProductComponent.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\PlantBusinessLogic.ViewModels.ComponentViewModel.datasource" />
     <None Include="Properties\DataSources\PlantBusinessLogic.ViewModels.OrderViewModel.datasource" />

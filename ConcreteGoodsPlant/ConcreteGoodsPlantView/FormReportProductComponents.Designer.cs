@@ -30,18 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ReportProductComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ButtonSaveToPDF = new System.Windows.Forms.Button();
-            this.ReportProductComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // ReportProductComponentViewModelBindingSource
+            // 
+            this.ReportProductComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportProductComponentViewModel);
+            // 
             // reportViewer
             // 
-            reportDataSource1.Name = "DataSetProductComponent";
+            reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = this.ReportProductComponentViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "ConcreteGoodsPlantView.ReportOrders.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "ConcreteGoodsPlantView.ReportProductComponent.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(3, 50);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
@@ -59,10 +63,6 @@
             this.ButtonSaveToPDF.UseVisualStyleBackColor = true;
             this.ButtonSaveToPDF.Click += new System.EventHandler(this.ButtonSaveToPDF_Click);
             // 
-            // ReportProductComponentViewModelBindingSource
-            // 
-            this.ReportProductComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportProductComponentViewModel);
-            // 
             // FormReportProductComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -71,7 +71,7 @@
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.ButtonSaveToPDF);
             this.Name = "FormReportProductComponents";
-            this.Text = "Компоненты и изделия";    
+            this.Text = "Компоненты и изделия";
             ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
