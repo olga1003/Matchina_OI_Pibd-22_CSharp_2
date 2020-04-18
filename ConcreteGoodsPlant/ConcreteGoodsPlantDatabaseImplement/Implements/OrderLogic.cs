@@ -58,8 +58,9 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
         }
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
+            using (var context = new ConcreteGoodsPlantDatabase())
             {
-                return source.Orders
+                return context.Orders
                 .Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
                ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >=
