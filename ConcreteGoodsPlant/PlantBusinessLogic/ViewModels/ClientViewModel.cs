@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PlantBusinessLogic.ViewModels
 {
-    class ClientViewModel
+    public class ClientViewModel
     {
         [DataMember]
         public int Id { get; set; }

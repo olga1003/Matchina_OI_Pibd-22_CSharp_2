@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantBusinessLogic.BindingModels
 {
-    class ClientBindingModel
+    public class ClientBindingModel
     {
         public int? Id { get; set; }
         public string ClientFIO { get; set; }

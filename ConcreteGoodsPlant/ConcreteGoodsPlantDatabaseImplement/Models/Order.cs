@@ -10,6 +10,9 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
+        public int ClientId { get; set; }
+        [Required]
+        public string ClientFIO { get; set; }
         [Required]
         public int Count { get; set; }
         [Required]
