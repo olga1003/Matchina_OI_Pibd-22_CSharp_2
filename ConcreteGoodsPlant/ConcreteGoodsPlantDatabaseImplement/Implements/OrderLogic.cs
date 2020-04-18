@@ -61,29 +61,29 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                .Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
-               ||
-                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >=
-               model.DateFrom && rec.DateCreate <= model.DateTo) ||
-                (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                .Where(
+                    rec => model == null
+                    || rec.Id == model.Id && model.Id.HasValue
+                    || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
+                    || model.ClientId.HasValue && rec.ClientId == model.ClientId
+                )
+                .Include(rec => rec.Product)
+                .Include(rec => rec.Client)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
-                    ProductId = rec.ProductId,
                     ClientId = rec.ClientId,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                    Status = rec.Status,
+                    ProductId = rec.ProductId,
                     Count = rec.Count,
                     Sum = rec.Sum,
-                    ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id ==
-     rec.ClientId)?.ClientFIO,
-                    ProductName = source.Products.FirstOrDefault(recP => recP.Id ==
-    rec.ProductId)?.ProductName,
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
+                    ProductName = rec.Product.ProductName,
+                    ClientFIO = rec.Client.FIO
                 })
                 .ToList();
             }
-
         }
     }
 }

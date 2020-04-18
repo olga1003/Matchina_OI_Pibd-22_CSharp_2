@@ -4,7 +4,6 @@ using System.Text;
 
 namespace PlantBusinessLogic.BindingModels
 {
-    /// Изделие, изготавливаемое в магазине 
     public class ProductConcreteBindingModel
     {
         public int? Id { get; set; }
