@@ -19,7 +19,6 @@ namespace ConcreteGoodsPlantFileImplement
         public List<Order> Orders { get; set; }
         public List<Product> Products { get; set; }
         public List<ProductComponent> ProductComponents { get; set; }
-     
         private FileDataListSingleton()
         {
             Components = LoadComponents();

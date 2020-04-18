@@ -2,8 +2,6 @@
 using ConcreteGoodsPlantDatabaseImplement.Implements;
 using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.BusinessLogics;
-using PlantBusinessLogic.ViewModels;
-using PlantBusinessLogic.BindingModels;
 
 namespace PlantRestApi.Controllers
 {

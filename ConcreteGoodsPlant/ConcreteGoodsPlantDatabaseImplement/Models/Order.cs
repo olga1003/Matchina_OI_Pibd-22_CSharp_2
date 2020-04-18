@@ -10,8 +10,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public int ClientId { get; set; }
-
         [Required]
         public int Count { get; set; }
         [Required]
@@ -22,6 +20,5 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Product Product { get; set; }
-        public Client Client { get; set; }
     }
 }

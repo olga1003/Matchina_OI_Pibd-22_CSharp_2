@@ -6,14 +6,13 @@ using System.Text;
 
 namespace PlantBusinessLogic.ViewModels
 {
-    [DataContract]
-    public class ClientViewModel
+    class ClientViewModel
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
         [DisplayName("ФИО")]
-        public string FIO { get; set; }
+        public string ClientFIO { get; set; }
         [DataMember]
         [DisplayName("Логин")]
         public string Email { get; set; }
