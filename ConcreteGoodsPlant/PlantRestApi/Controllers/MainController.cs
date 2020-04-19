@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using PlantBusinessLogic.BusinessLogics;
 using PlantBusinessLogic.BindingModels;
 using PlantBusinessLogic.ViewModels;
+using PlantRestApi.Models;
+
 namespace PlantRestApi.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -27,7 +29,7 @@ namespace PlantRestApi.Controllers
        Convert(rec)).ToList();
         [HttpGet]
         public ProductModel GetProduct(int productId) => Convert(_product.Read(new
-       ProductBindingModel
+       ProductConcreteBindingModel
         { Id = productId })?[0]);
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new

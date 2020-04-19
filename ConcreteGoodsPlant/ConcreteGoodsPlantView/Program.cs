@@ -37,6 +37,7 @@ namespace ConcreteGoodsPlantView
                 currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
                 currentContainer.RegisterType<ReportLogic>(new
                HierarchicalLifetimeManager());
+                currentContainer.RegisterType<IClientLogic, ClientLogic>(new HierarchicalLifetimeManager());
                 return currentContainer;
             }
         }

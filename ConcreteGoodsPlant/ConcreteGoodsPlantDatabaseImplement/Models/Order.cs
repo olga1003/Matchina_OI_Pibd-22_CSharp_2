@@ -12,8 +12,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public int ProductId { get; set; }
         public int ClientId { get; set; }
         [Required]
-        public string ClientFIO { get; set; }
-        [Required]
         public int Count { get; set; }
         [Required]
         public decimal Sum { get; set; }
@@ -23,5 +21,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Product Product { get; set; }
+        public Client Client { get; set; }
     }
 }

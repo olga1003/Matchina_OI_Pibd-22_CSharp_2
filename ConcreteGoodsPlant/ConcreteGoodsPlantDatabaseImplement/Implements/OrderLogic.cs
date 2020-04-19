@@ -31,6 +31,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.ProductId = model.ProductId == 0 ? element.ProductId : model.ProductId;
+                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
@@ -61,11 +62,12 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                .Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
-                || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
-                (model.ClientId.HasValue && rec.ClientId == model.ClientId))
-                .Select(rec => new OrderViewModel
-                {
+                 .Where(rec => model == null || rec.Id == model.Id && model.Id.HasValue
+                    || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
+                    || model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                 .Include(rec => rec.Client)
+                 .Select(rec => new OrderViewModel
+                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
                     ProductId = rec.ProductId,
@@ -74,11 +76,9 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
-                    ClientFIO = context.Clients.FirstOrDefault(recC => recC.Id ==
-                    rec.ClientId).FIO,
-                    ProductName = context.Products.FirstOrDefault(recS => recS.Id ==
-                    rec.ProductId).ProductName,
-                })
+                    ProductName = rec.Product.ProductName,
+                    ClientFIO = rec.Client.FIO
+                 })
             .ToList();
             }
         }

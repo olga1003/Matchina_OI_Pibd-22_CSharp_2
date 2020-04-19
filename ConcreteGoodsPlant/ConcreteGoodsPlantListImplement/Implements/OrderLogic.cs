@@ -64,6 +64,7 @@ namespace ConcreteGoodsPlantListImplement.Implements
             order.ProductId = model.ProductId;
             order.Count = model.Count;
             order.DateCreate = model.DateCreate;
+            order.ClientId = (int)model.ClientId;
             order.DateImplement = model.DateImplement;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -114,6 +115,7 @@ namespace ConcreteGoodsPlantListImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ProductId = order.ProductId,
                 ProductName = productName,
                 Count = order.Count,
