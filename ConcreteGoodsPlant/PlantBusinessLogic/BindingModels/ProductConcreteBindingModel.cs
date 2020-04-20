@@ -16,3 +16,4 @@ namespace PlantBusinessLogic.BindingModels
         public Dictionary<int, (string, int)> ProductComponents { get; set; }
     }
 }
+
