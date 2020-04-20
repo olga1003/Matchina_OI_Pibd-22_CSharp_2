@@ -39,7 +39,7 @@ namespace ConcreteGoodsPlantView
 
                 if (listC != null)
                 {
-                    comboBoxClient.DisplayMember = "FIO";
+                    comboBoxClient.DisplayMember = "ClientFIO";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
