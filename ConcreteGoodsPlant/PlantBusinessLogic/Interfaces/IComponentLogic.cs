@@ -8,14 +8,8 @@ namespace PlantBusinessLogic.Interfaces
 {
     public interface IComponentLogic
     {
-        List<ComponentViewModel> GetList();
-
-        ComponentViewModel GetElement(int id);
-
-        void AddElement(ComponentBindingModel model);
-
-        void UpdElement(ComponentBindingModel model);
-
-        void DelElement(int id);
+        List<ComponentViewModel> Read(ComponentBindingModel model);
+        void CreateOrUpdate(ComponentBindingModel model);
+        void Delete(ComponentBindingModel model);
     }
 }
