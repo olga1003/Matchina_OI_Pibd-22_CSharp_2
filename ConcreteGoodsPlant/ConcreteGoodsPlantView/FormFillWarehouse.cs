@@ -68,7 +68,7 @@ namespace ConcreteGoodsPlantView
         }
 
 
-        private void ButtonCancel_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
@@ -109,7 +109,7 @@ namespace ConcreteGoodsPlantView
             }
         }
 
-        private void ButtonSave_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
