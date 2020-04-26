@@ -11,87 +11,106 @@ namespace ConcreteGoodsPlantListImplement.Implements
     public class ComponentLogic : IComponentLogic
     {
         private readonly DataListSingleton source;
+
         public ComponentLogic()
         {
             source = DataListSingleton.GetInstance();
         }
-        public void CreateOrUpdate(ComponentBindingModel model)
+
+        public List<ComponentViewModel> GetList()
         {
-            Component tempComponent = model.Id.HasValue ? null : new Component
+            List<ComponentViewModel> result = new List<ComponentViewModel>();
+
+            for (int i = 0; i < source.Components.Count; ++i)
             {
-                Id = 1
-            };
-            foreach (var component in source.Components)
-            {
-                if (component.ComponentName == model.ComponentName && component.Id !=
-               model.Id)
+                result.Add(new ComponentViewModel
                 {
-                    throw new Exception("Уже есть компонент с таким названием");
-                }
-                if (!model.Id.HasValue && component.Id >= tempComponent.Id)
-                {
-                    tempComponent.Id = component.Id + 1;
-                }
-                else if (model.Id.HasValue && component.Id == model.Id)
-                {
-                    tempComponent = component;
-                }
+                    Id = source.Components[i].Id,
+                    ComponentName = source.Components[i].ComponentName
+                });
             }
-            if (model.Id.HasValue)
-            {
-                if (tempComponent == null)
-                {
-                    throw new Exception("Элемент не найден");
-                }
-                CreateModel(model, tempComponent);
-            }
-            else
-            {
-                source.Components.Add(CreateModel(model, tempComponent));
-            }
+
+            return result;
         }
-        public void Delete(ComponentBindingModel model)
+
+        public ComponentViewModel GetElement(int id)
         {
             for (int i = 0; i < source.Components.Count; ++i)
             {
-                if (source.Components[i].Id == model.Id.Value)
+                if (source.Components[i].Id == id)
+                {
+                    return new ComponentViewModel
+                    {
+                        Id = source.Components[i].Id,
+                        ComponentName = source.Components[i].ComponentName
+                    };
+                }
+            }
+
+            throw new Exception("Элемент не найден");
+        }
+
+        public void AddElement(ComponentBindingModel model)
+        {
+            int maxId = 0;
+
+            for (int i = 0; i < source.Components.Count; ++i)
+            {
+                if (source.Components[i].Id > maxId)
+                {
+                    maxId = source.Components[i].Id;
+                }
+
+                if (source.Components[i].ComponentName == model.ComponentName)
+                {
+                    throw new Exception("Уже есть компонент с таким названием");
+                }
+            }
+
+            source.Components.Add(new Component
+            {
+                Id = maxId + 1,
+                ComponentName = model.ComponentName
+            });
+        }
+
+        public void UpdElement(ComponentBindingModel model)
+        {
+            int index = -1;
+
+            for (int i = 0; i < source.Components.Count; ++i)
+            {
+                if (source.Components[i].Id == model.Id)
+                {
+                    index = i;
+                }
+
+                if (source.Components[i].ComponentName == model.ComponentName && source.Components[i].Id != model.Id)
+                {
+                    throw new Exception("Уже есть компонент с таким названием");
+                }
+            }
+
+            if (index == -1)
+            {
+                throw new Exception("Элемент не найден");
+            }
+
+            source.Components[index].ComponentName = model.ComponentName;
+        }
+
+        public void DelElement(int id)
+        {
+            for (int i = 0; i < source.Components.Count; ++i)
+            {
+                if (source.Components[i].Id == id)
                 {
                     source.Components.RemoveAt(i);
                     return;
                 }
             }
+
             throw new Exception("Элемент не найден");
         }
-        public List<ComponentViewModel> Read(ComponentBindingModel model)
-        {
-            List<ComponentViewModel> result = new List<ComponentViewModel>();
-            foreach (var component in source.Components)
-            {
-                if (model != null)
-                {
-                    if (component.Id == model.Id)
-                    {
-                        result.Add(CreateViewModel(component));
-                        break;
-                    }
-                    continue;
-                }
-                result.Add(CreateViewModel(component));
-            }
-            return result;
-        }
-        private Component CreateModel(ComponentBindingModel model, Component component)
-        {
-            component.ComponentName = model.ComponentName;
-            return component;
-        }
-        private ComponentViewModel CreateViewModel(Component component)
-        {
-            return new ComponentViewModel
-            {
-                Id = component.Id,
-                ComponentName = component.ComponentName
-            };
-        }
     }
-}
+}

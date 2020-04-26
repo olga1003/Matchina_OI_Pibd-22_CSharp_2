@@ -4,12 +4,6 @@ using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
@@ -36,7 +30,7 @@ namespace ConcreteGoodsPlantView
         {
             try
             {
-                List<ComponentViewModel> list = componentLogic.Read(null);
+                List<ComponentViewModel> list = componentLogic.GetList();
                 if (list != null)
                 {
                     comboBoxComponent.DisplayMember = "ComponentName";
@@ -69,6 +63,13 @@ namespace ConcreteGoodsPlantView
 
 
         private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+           
+        }
+
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
@@ -107,12 +108,6 @@ namespace ConcreteGoodsPlantView
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void ButtonSave_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
     }
 }

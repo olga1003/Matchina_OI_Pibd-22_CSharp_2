@@ -11,27 +11,30 @@ namespace ConcreteGoodsPlantView
 {
     public partial class FormProductConcrete : Form
     {
-   
+
         [Dependency]
         public new IUnityContainer Container { get; set; }
+
         public int Id { set { id = value; } }
+
         private readonly IProductLogic logic;
         private int? id;
-        private Dictionary<int, (string, int)> productComponents;
+        private List<ProductComponentViewModel> productComponents;
+
         public FormProductConcrete(IProductLogic service)
         {
             InitializeComponent();
             this.logic = service;
-        }        private void FormProduct_Load(object sender, EventArgs e)
+        }
+
+        private void FormProduct_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    ProductViewModel view = logic.Read(new ProductConcreteBindingModel
-                    {
-                        Id = id.Value
-                    })?[0];
+                    ProductViewModel view = logic.GetElement(id.Value);
+
                     if (view != null)
                     {
                         textBoxName.Text = view.ProductName;
@@ -42,78 +45,104 @@ namespace ConcreteGoodsPlantView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                productComponents = new Dictionary<int, (string, int)>();
+                productComponents = new List<ProductComponentViewModel>();
             }
         }
+
         private void LoadData()
         {
             try
             {
                 if (productComponents != null)
                 {
-                    dataGridView.Rows.Clear();
-                    foreach (var pc in productComponents)
-                    {
-                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
-                    }
+                    dataGridView.DataSource = null;
+                    dataGridView.DataSource = productComponents;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-   MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             if (string.IsNullOrEmpty(textBoxPrice.Text))
             {
-                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             if (productComponents == null || productComponents.Count == 0)
             {
-                MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             try
             {
-                logic.CreateOrUpdate(new ProductConcreteBindingModel
+                List<ProductComponentBindingModel> productComponentBM = new List<ProductComponentBindingModel>();
+
+                for (int i = 0; i < productComponents.Count; ++i)
                 {
-                    Id = id,
-                    ProductName = textBoxName.Text,
-                    Price = Convert.ToDecimal(textBoxPrice.Text),
-                    ProductComponents = productComponents
-                });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    productComponentBM.Add(new ProductComponentBindingModel
+                    {
+                        Id = productComponents[i].Id,
+                        ProductId = productComponents[i].ProductId,
+                        ComponentId = productComponents[i].ComponentId,
+                        Count = productComponents[i].Count
+                    });
+                }
+
+                if (id.HasValue)
+                {
+                    logic.UpdElement(new ProductConcreteBindingModel
+                    {
+                        Id = id.Value,
+                        ProductName = textBoxName.Text,
+                        Price = Convert.ToDecimal(textBoxPrice.Text),
+                        ProductComponents = productComponentBM
+                    });
+                }
+                else
+                {
+                    logic.AddElement(new ProductConcreteBindingModel
+                    {
+                        ProductName = textBoxName.Text,
+                        Price = Convert.ToDecimal(textBoxPrice.Text),
+                        ProductComponents = productComponentBM
+                    });
+                }
+
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
+
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel; 
             Close();
         }
 
@@ -126,19 +155,17 @@ namespace ConcreteGoodsPlantView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
-
-                        productComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                        productComponents.RemoveAt(dataGridView.SelectedRows[0].Cells[0].RowIndex);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                       MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                     LoadData();
                 }
             }
@@ -149,12 +176,11 @@ namespace ConcreteGoodsPlantView
             if (dataGridView.SelectedRows.Count == 1)
             {
                 var form = Container.Resolve<FormProductComponent>();
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                form.Id = id;
-                form.Count = productComponents[id].Item2;
+                form.ModelView = productComponents[dataGridView.SelectedRows[0].Cells[0].RowIndex];
+
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                    productComponents[dataGridView.SelectedRows[0].Cells[0].RowIndex] = form.ModelView;
                     LoadData();
                 }
             }
@@ -163,16 +189,19 @@ namespace ConcreteGoodsPlantView
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormProductComponent>();
+
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (productComponents.ContainsKey(form.Id))
+                if (form.ModelView != null)
                 {
-                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                    if (id.HasValue)
+                    {
+                        form.ModelView.ProductId = id.Value;
+                    }
+
+                    productComponents.Add(form.ModelView);
                 }
-                else
-                {
-                    productComponents.Add(form.Id, (form.ComponentName, form.Count));
-                }
+
                 LoadData();
             }
         }

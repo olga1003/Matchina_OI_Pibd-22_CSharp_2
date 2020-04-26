@@ -8,8 +8,14 @@ namespace PlantBusinessLogic.Interfaces
 {
     public interface IProductLogic
     {
-        List<ProductViewModel> Read(ProductConcreteBindingModel model);
-        void CreateOrUpdate(ProductConcreteBindingModel model);
-        void Delete(ProductConcreteBindingModel model);
+        List<ProductViewModel> GetList();
+
+        ProductViewModel GetElement(int id);
+
+        void AddElement(ProductConcreteBindingModel model);
+
+        void UpdElement(ProductConcreteBindingModel model);
+
+        void DelElement(int id);
     }
 }

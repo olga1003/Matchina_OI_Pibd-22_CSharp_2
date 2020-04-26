@@ -27,7 +27,7 @@ namespace ConcreteGoodsPlantView
             {
                 try
                 {
-                    var view = logic.Read(new ComponentBindingModel { Id = id })?[0];
+                    var view = logic.GetElement(id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.ComponentName;
@@ -35,8 +35,7 @@ namespace ConcreteGoodsPlantView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -45,26 +44,28 @@ namespace ConcreteGoodsPlantView
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             try
             {
-                logic.CreateOrUpdate(new ComponentBindingModel
+                if (id.HasValue)
                 {
-                    Id = id,
-                    ComponentName = textBoxName.Text
-                });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logic.UpdElement(new ComponentBindingModel { Id = id.Value, ComponentName = textBoxName.Text });
+                }
+                else
+                {
+                    logic.AddElement(new ComponentBindingModel { ComponentName = textBoxName.Text });
+                }
+
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
