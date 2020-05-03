@@ -13,9 +13,6 @@ namespace ConcreteGoodsPlantView
 {
     static class Program
     {
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -35,6 +32,7 @@ namespace ConcreteGoodsPlantView
                 currentContainer.RegisterType<IProductLogic, ProductLogic>(new
                HierarchicalLifetimeManager());
                 currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
+                currentContainer.RegisterType<IWarehouseLogic, WarehouseLogic>(new HierarchicalLifetimeManager());
                 return currentContainer;
             }
         }
