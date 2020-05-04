@@ -19,5 +19,7 @@ namespace PlantBusinessLogic.Interfaces
         void DelElement(int id);
 
         void AddComponent(WarehouseComponentBindingModel model);
+        void DeleteFromWarehouse(int productId, int count);
+        bool CheckAvailable(int productId, int count);
     }
 }

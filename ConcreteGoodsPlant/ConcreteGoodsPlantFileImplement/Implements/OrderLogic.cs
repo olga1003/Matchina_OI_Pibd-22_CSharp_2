@@ -61,7 +61,8 @@ namespace ConcreteGoodsPlantFileImplement.Implements
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
-                ProductName = GetProductName(rec.ProductId),
+                ProductId = rec.ProductId,
+                ProductName = source.Products.FirstOrDefault(x => x.Id == rec.ProductId)?.ProductName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -69,13 +70,6 @@ namespace ConcreteGoodsPlantFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
-        }
-        private string GetProductName(int id)
-        {
-            string name = "";
-            var product = source.Products.FirstOrDefault(x => x.Id == id);
-            name = product != null ? product.ProductName : "";
-            return name;
         }
     }
 }
