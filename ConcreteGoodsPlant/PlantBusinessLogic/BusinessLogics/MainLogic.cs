@@ -41,10 +41,6 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!warehouseLogic.CheckAvailable(order.ProductId, order.Count))
-            {
-                throw new Exception("На складах не хватает деталей");
-            }
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
@@ -55,7 +51,6 @@ namespace PlantBusinessLogic.BusinessLogics
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Выполняется
             });
-            warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {

@@ -5,7 +5,6 @@ using ConcreteGoodsPlantListImplement.Models;
 using System.Collections.Generic;
 using System.Text;
 using PlantBusinessLogic.BindingModels;
-using System.Linq;
 
 namespace ConcreteGoodsPlantListImplement.Implements
 {
@@ -210,40 +209,6 @@ namespace ConcreteGoodsPlantListImplement.Implements
                     Count = model.Count
                 });
             }
-        }
-        public bool CheckAvailable(int ProductId, int ProductsCount)
-        {
-            bool result = true;
-            var ProductComponents = source.ProductComponents.Where(x => x.ProductId == ProductId);
-            if (ProductComponents.Count() == 0) return false;
-            foreach (var elem in ProductComponents)
-            {
-                int count = 0;
-                var warehouseComponents = source.WarehouseComponents.FindAll(x => x.ComponentId == elem.ComponentId);
-                count = warehouseComponents.Sum(x => x.Count);
-                if (count < elem.Count * ProductsCount)
-                    return false;
-            }
-            return result;
-        }
-
-        public void DeleteFromWarehouse(int ProductId, int ProductsCount)
-        {
-            var ProductComponents = source.ProductComponents.Where(x => x.ProductId == ProductId);
-            if (ProductComponents.Count() == 0) return;
-            foreach (var elem in ProductComponents)
-            {
-                int left = elem.Count * ProductsCount;
-                var warehouseComponents = source.ProductComponents.FindAll(x => x.ComponentId == elem.ComponentId);
-                foreach (var rec in warehouseComponents)
-                {
-                    int toRemove = left > rec.Count ? rec.Count : left;
-                    rec.Count -= toRemove;
-                    left -= toRemove;
-                    if (left == 0) break;
-                }
-            }
-            return;
         }
     }
 }
