@@ -10,6 +10,7 @@ namespace PlantBusinessLogic.ViewModels
     /// Изделие, изготавливаемое в магазине   
     [DataContract]
     public class ProductViewModel
+    { 
         [DataMember]
         public int Id { get; set; }
         [DataMember]
