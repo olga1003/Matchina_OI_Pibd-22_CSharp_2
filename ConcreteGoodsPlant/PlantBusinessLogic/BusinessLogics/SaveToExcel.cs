@@ -62,9 +62,16 @@ namespace PlantBusinessLogic.BusinessLogics
                     CellToName = "C1"
                 });
                 uint rowIndex = 2;
+                List<DateTime> dates = new List<DateTime>();
+                foreach (var order in info.Orders)
+                {
+                    if (!dates.Contains(order.DateCreate.Date))
+                    {
+                        dates.Add(order.DateCreate.Date);
+                    }
+                }
 
-
-                foreach (var date in info.Orders)
+                foreach (var date in dates)
                 {
                     decimal dateSum = 0;
                     InsertCellInWorksheet(new ExcelCellParameters
@@ -73,11 +80,11 @@ namespace PlantBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = date.Key.ToString(),
+                        Text = date.Date.ToString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
-                    foreach (var order in date)
+                    foreach (var order in info.Orders.Where(rec => rec.DateCreate.Date == date.Date))
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
