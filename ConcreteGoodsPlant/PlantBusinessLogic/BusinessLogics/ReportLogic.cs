@@ -21,10 +21,7 @@ namespace PlantBusinessLogic.BusinessLogics
             this.componentLogic = componentLogic;
             this.orderLogic = orderLLogic;
         }
-        /// <summary>
-        /// Получение списка компонент с указанием, в каких изделиях используются
-        /// </summary>
-        /// <returns></returns>
+
         public List<ReportProductComponentViewModel> GetProductComponent()
         {
             var components = componentLogic.Read(null);
