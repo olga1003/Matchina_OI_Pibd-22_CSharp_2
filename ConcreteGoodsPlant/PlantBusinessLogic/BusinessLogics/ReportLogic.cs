@@ -33,15 +33,15 @@ namespace PlantBusinessLogic.BusinessLogics
             foreach (var product in products)
             {
                 foreach (var pc in product.ProductComponents)
-                {
-                    var record = new ReportProductComponentViewModel
-                    {
-                        ProductName = product.ProductName,
-                        ComponentName = pc.Value.Item1,
-                        Count = pc.Value.Item2
-                    };
+                {                 
+                        var record = new ReportProductComponentViewModel
+                        {
+                            ProductName = product.ProductName,
+                            ComponentName = pc.Value.Item1,
+                            Count = pc.Value.Item2
+                        };
 
-                    list.Add(record);
+                        list.Add(record);
                 }
             }
             return list;
@@ -97,12 +97,13 @@ namespace PlantBusinessLogic.BusinessLogics
         /// <param name="model"></param>
            public void SaveOrdersToExcelFile(ReportBindingModel model)
            {
-            SaveToExcel.CreateDoc(new ExcelInfo
-            {
-                FileName = model.FileName,
-                Title = "Список заказов",
-                Orders = GetOrders(model)
-            });
+
+                SaveToExcel.CreateDoc(new ExcelInfo
+                {
+                    FileName = model.FileName,
+                    Title = "Список заказов",
+                    Orders = GetOrders(model)
+                });
         }
     }
 }
