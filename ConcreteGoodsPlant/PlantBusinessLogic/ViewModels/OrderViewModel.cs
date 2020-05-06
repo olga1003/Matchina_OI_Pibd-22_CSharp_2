@@ -17,6 +17,9 @@ namespace PlantBusinessLogic.ViewModels
         public int ClientId { get; set; }
         [DataMember]
         public int ProductId { get; set; }
+        [DataMember]
+        [DisplayName("Клиент")]
+        public string ClientFIO { get; set; }
 
         [DisplayName("Изделие")] public string ProductName { get; set; }
 
