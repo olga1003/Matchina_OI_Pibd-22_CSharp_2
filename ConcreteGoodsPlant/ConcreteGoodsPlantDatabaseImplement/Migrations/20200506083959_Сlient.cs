@@ -2,7 +2,7 @@
 
 namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 {
-    public partial class Client : Migration
+    public partial class Сlient : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

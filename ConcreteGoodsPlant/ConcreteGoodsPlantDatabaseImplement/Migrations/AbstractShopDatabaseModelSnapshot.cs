@@ -143,7 +143,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
