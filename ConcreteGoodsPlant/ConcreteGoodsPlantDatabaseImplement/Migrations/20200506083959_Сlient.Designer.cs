@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 {
     [DbContext(typeof(ConcreteGoodsPlantDatabase))]
-    [Migration("20200418145920_Client")]
-    partial class Client
+    [Migration("20200506083959_Сlient")]
+    partial class Сlient
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -145,7 +145,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
