@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConcreteGoodsPlantDatabaseImplement.Models
+namespace ConcreteGoodsPlantListImplement.Models
 {
     public class Implementer
     {
@@ -13,6 +13,5 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public int WorkingTime { get; set; }
 
         public int PauseTime { get; set; }
-        public List<Order> Orders { get; set; }
     }
 }

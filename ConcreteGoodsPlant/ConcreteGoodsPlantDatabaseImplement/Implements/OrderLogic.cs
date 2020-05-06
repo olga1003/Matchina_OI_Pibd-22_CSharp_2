@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ConcreteGoodsPlantDatabaseImplement.Models;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using PlantBusinessLogic.Enums;
 
 namespace ConcreteGoodsPlantDatabaseImplement.Implements

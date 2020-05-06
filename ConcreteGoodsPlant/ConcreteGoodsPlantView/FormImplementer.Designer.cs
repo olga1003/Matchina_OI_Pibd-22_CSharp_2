@@ -40,7 +40,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(403, 217);
+            this.buttonCancel.Location = new System.Drawing.Point(449, 139);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(120, 27);
@@ -51,7 +51,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(247, 217);
+            this.buttonSave.Location = new System.Drawing.Point(293, 139);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(123, 27);
@@ -63,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(101, 78);
+            this.label1.Location = new System.Drawing.Point(110, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 6;
@@ -71,7 +71,7 @@
             // 
             // textBoxFIO
             // 
-            this.textBoxFIO.Location = new System.Drawing.Point(158, 73);
+            this.textBoxFIO.Location = new System.Drawing.Point(167, 12);
             this.textBoxFIO.Name = "textBoxFIO";
             this.textBoxFIO.Size = new System.Drawing.Size(402, 22);
             this.textBoxFIO.TabIndex = 7;
@@ -79,7 +79,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 121);
+            this.label2.Location = new System.Drawing.Point(21, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 17);
             this.label2.TabIndex = 8;
@@ -88,7 +88,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(-4, 163);
+            this.label3.Location = new System.Drawing.Point(5, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(147, 17);
             this.label3.TabIndex = 9;
@@ -96,14 +96,14 @@
             // 
             // textBoxWorkingTime
             // 
-            this.textBoxWorkingTime.Location = new System.Drawing.Point(158, 116);
+            this.textBoxWorkingTime.Location = new System.Drawing.Point(167, 55);
             this.textBoxWorkingTime.Name = "textBoxWorkingTime";
             this.textBoxWorkingTime.Size = new System.Drawing.Size(402, 22);
             this.textBoxWorkingTime.TabIndex = 10;
             // 
             // textBoxPauseTime
             // 
-            this.textBoxPauseTime.Location = new System.Drawing.Point(158, 160);
+            this.textBoxPauseTime.Location = new System.Drawing.Point(167, 99);
             this.textBoxPauseTime.Name = "textBoxPauseTime";
             this.textBoxPauseTime.Size = new System.Drawing.Size(402, 22);
             this.textBoxPauseTime.TabIndex = 11;
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 257);
+            this.ClientSize = new System.Drawing.Size(581, 175);
             this.Controls.Add(this.textBoxPauseTime);
             this.Controls.Add(this.textBoxWorkingTime);
             this.Controls.Add(this.label3);
@@ -122,7 +122,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Name = "FormImplementer";
-            this.Text = "FormImplementer";
+            this.Text = "Исполнитель";
             this.ResumeLayout(false);
             this.PerformLayout();
 

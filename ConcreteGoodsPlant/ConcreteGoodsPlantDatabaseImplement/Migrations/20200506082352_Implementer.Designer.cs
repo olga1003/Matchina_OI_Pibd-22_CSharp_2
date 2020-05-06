@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 {
     [DbContext(typeof(ConcreteGoodsPlantDatabase))]
-    [Migration("20200420092517_Implementer")]
+    [Migration("20200506082352_Implementer")]
     partial class Implementer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -177,7 +177,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Implementer", "Implementer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ImplementerId");
 
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Product")
