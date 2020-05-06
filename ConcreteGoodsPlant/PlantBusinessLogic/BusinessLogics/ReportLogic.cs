@@ -26,22 +26,22 @@ namespace PlantBusinessLogic.BusinessLogics
         /// </summary>
         /// <returns></returns>
         public List<ReportProductComponentViewModel> GetProductComponent()
-        {
+        {         
             var products = productLogic.Read(null);
             var list = new List<ReportProductComponentViewModel>();
 
             foreach (var product in products)
             {
                 foreach (var pc in product.ProductComponents)
-                {                 
-                        var record = new ReportProductComponentViewModel
-                        {
-                            ProductName = product.ProductName,
-                            ComponentName = pc.Value.Item1,
-                            Count = pc.Value.Item2
-                        };
+                {
+                    var record = new ReportProductComponentViewModel
+                    {
+                        ProductName = product.ProductName,
+                        ComponentName = pc.Value.Item1,
+                        Count = pc.Value.Item2
+                    };
 
-                        list.Add(record);
+                    list.Add(record);
                 }
             }
             return list;
@@ -51,16 +51,17 @@ namespace PlantBusinessLogic.BusinessLogics
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public List<System.Linq.IGrouping<DateTime, OrderViewModel>> GetOrders(ReportBindingModel model)
+        public List<IGrouping<DateTime, OrderViewModel>> GetOrders(ReportBindingModel model)
         {
-            var list = orderLogic.Read(new OrderBindingModel
+            var list = orderLogic
+            .Read(new OrderBindingModel
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
             })
-           .GroupBy(rec => rec.DateCreate.Date)
-           .OrderBy(recG => recG.Key)
-           .ToList();
+            .GroupBy(rec => rec.DateCreate.Date)
+            .OrderBy(recG => recG.Key)
+            .ToList();
 
             return list;
         }
@@ -97,13 +98,12 @@ namespace PlantBusinessLogic.BusinessLogics
         /// <param name="model"></param>
            public void SaveOrdersToExcelFile(ReportBindingModel model)
            {
-
-                SaveToExcel.CreateDoc(new ExcelInfo
-                {
-                    FileName = model.FileName,
-                    Title = "Список заказов",
-                    Orders = GetOrders(model)
-                });
+            SaveToExcel.CreateDoc(new ExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Список заказов",
+                Orders = GetOrders(model)
+            });
         }
     }
 }

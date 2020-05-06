@@ -63,7 +63,6 @@ namespace PlantBusinessLogic.BusinessLogics
                 });
                 uint rowIndex = 2;
 
-
                 foreach (var date in info.Orders)
                 {
                     decimal dateSum = 0;
