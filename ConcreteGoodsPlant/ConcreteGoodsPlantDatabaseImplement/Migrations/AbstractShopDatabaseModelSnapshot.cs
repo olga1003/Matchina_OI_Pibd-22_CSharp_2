@@ -59,27 +59,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                     b.ToTable("Components");
                 });
 
-            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Implementer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImplementerFIO")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PauseTime")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkingTime")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Implementers");
-                });
-
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -99,9 +78,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                     b.Property<DateTime?>("DateImplement")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ImplementerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -114,8 +90,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("ImplementerId");
 
                     b.HasIndex("ProductId");
 
@@ -173,10 +147,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Implementer", "Implementer")
-                        .WithMany("Orders")
-                        .HasForeignKey("ImplementerId");
 
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Product")
                         .WithMany("Orders")
