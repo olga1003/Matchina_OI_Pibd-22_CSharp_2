@@ -61,7 +61,7 @@ namespace ConcreteGoodsPlantView
             {
                 logic?.CreateOrUpdate(new ImplementerBindingModel
                 {
-                    Id = id.Value,
+                    Id = id,
                     ImplementerFIO = textBoxFIO.Text,
                     WorkingTime = Int32.Parse(textBoxWorkingTime.Text),
                     PauseTime = Int32.Parse(textBoxPauseTime.Text),
