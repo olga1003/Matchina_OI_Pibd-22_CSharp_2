@@ -123,6 +123,7 @@
             this.Controls.Add(this.buttonSave);
             this.Name = "FormImplementer";
             this.Text = "Исполнитель";
+            this.Load += new System.EventHandler(this.FormImplementer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

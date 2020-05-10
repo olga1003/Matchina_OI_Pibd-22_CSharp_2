@@ -31,7 +31,10 @@ namespace PlantBusinessLogic.BusinessLogics
         {
             lock (locker)
             {
-                var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+                var order = orderLogic.Read(new OrderBindingModel
+                {
+                    Id = model.OrderId
+                })?[0];
                 if (order == null)
                 {
                     throw new Exception("Не найден заказ");
@@ -53,56 +56,58 @@ namespace PlantBusinessLogic.BusinessLogics
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
-                    DateImplement = DateTime.Now,
+             //       DateImplement = DateTime.Now,
                     Status = OrderStatus.Выполняется
                 });
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
             }
+
             if (order.Status != OrderStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
+
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
                 ProductId = order.ProductId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement,
+                DateImplement = DateTime.Now,
                 Status = OrderStatus.Готов
             });
         }
         public void PayOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
             }
+
             if (order.Status != OrderStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
+
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
                 ProductId = order.ProductId,
+                ImplementerId = model.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

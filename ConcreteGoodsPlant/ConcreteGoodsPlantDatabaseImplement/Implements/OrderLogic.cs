@@ -82,9 +82,10 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     Status = rec.Status,
                     Count = rec.Count,
                     Sum = rec.Sum,
+                    ProductName = rec.Product.ProductName,
                     ClientFIO = rec.Client.FIO,
                     ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
-                    ProductName = rec.Product.ProductName
+                 
                 })
                 .ToList();
             }

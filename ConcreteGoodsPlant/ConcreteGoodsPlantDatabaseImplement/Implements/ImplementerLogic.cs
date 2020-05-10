@@ -1,11 +1,12 @@
-﻿using ConcreteGoodsPlantDatabaseImplement.Models;
+﻿using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.BindingModels;
-using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.ViewModels;
+using ConcreteGoodsPlantDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
+
 
 namespace ConcreteGoodsPlantDatabaseImplement.Implements
 {
@@ -23,10 +24,10 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     context.Implementers.Add(element);
                 }
 
+
                 element.ImplementerFIO = model.ImplementerFIO;
                 element.WorkingTime = model.WorkingTime;
                 element.PauseTime = model.PauseTime;
-
                 context.SaveChanges();
             }
         }
