@@ -121,17 +121,17 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                 return context.Products
                 .Where(rec => model == null || rec.Id == model.Id)
                 .ToList()
-               .Select(rec => new ProductViewModel
-               {
-                   Id = rec.Id,
-                   ProductName = rec.ProductName,
-                   Price = rec.Price,
-                   ProductComponents = context.ProductComponents.Include(recPC => recPC.Component)
-               .Where(recPC => recPC.ProductId == rec.Id)
-               .ToDictionary(recPC => recPC.ComponentId, recPC =>
-                (recPC.Component?.ComponentName, recPC.Count))
-               })
-               .ToList();
+                .Select(rec => new ProductViewModel
+                {
+                    Id = rec.Id,
+                    ProductName = rec.ProductName,
+                    Price = rec.Price,
+                    ProductComponents = context.ProductComponents
+                    .Include(recPC => recPC.Component)
+                    .Where(recPC => recPC.ProductId == rec.Id)
+                    .ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
+                })
+                .ToList();
             }
         }
     }
