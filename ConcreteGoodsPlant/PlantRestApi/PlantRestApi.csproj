@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Unity" Version="5.11.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ConcreteGoodsPlantDatabaseImplement\ConcreteGoodsPlantDatabaseImplement.csproj" />
     <ProjectReference Include="..\PlantBusinessLogic\PlantBusinessLogic.csproj" />
   </ItemGroup>

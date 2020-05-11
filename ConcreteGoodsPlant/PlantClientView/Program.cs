@@ -15,7 +15,7 @@ namespace PlantClientView
         /// </summary>
         [STAThread]
         static void Main()
-        {Z
+        {
             APIClient.Connect();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
