@@ -10,9 +10,11 @@ namespace PlantBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IWarehouseLogic warehouseLogic;
+        public MainLogic(IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
         {
             this.orderLogic = orderLogic;
+            this.warehouseLogic = warehouseLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -39,6 +41,10 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            if (!warehouseLogic.CheckAvailable(order.ProductId, order.Count))
+            {
+                throw new Exception("На складах не хватает компонентов");
+            }
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
@@ -49,6 +55,7 @@ namespace PlantBusinessLogic.BusinessLogics
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Выполняется
             });
+            warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -99,6 +106,10 @@ namespace PlantBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillWarehouse(WarehouseComponentBindingModel model)
+        {
+            warehouseLogic.AddComponent(model);
         }
     }
 }
