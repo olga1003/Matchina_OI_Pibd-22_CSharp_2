@@ -185,7 +185,6 @@ namespace ConcreteGoodsPlantListImplement.Implements
                     source.WarehouseComponents[i].ComponentId == model.ComponentId)
                 {
                     source.WarehouseComponents[i].Count += model.Count;
-                    model.Id = source.WarehouseComponents[i].Id;
                     return;
                 }
             }
@@ -200,16 +199,14 @@ namespace ConcreteGoodsPlantListImplement.Implements
                 }
             }
 
-            if (model.Id == 0)
+            source.WarehouseComponents.Add(new WarehouseComponent
             {
-                source.WarehouseComponents.Add(new WarehouseComponent
-                {
-                    Id = ++maxWCId,
-                    WarehouseId = model.WarehouseId,
-                    ComponentId = model.ComponentId,
-                    Count = model.Count
-                });
-            }
+                Id = ++maxWCId,
+                WarehouseId = model.WarehouseId,
+                ComponentId = model.ComponentId,
+                Count = model.Count
+            });
+            
         }
         public bool CheckAvailable(int ProductId, int ProductsCount)
         {
