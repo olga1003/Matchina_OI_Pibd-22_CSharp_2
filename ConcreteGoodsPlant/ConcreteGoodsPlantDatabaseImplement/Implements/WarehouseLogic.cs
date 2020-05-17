@@ -157,11 +157,11 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                         foreach (var elem in productComponents)
                         {
                             int left = elem.Count * count;
-                            var warehouseDetails = context.WarehouseComponents.Where(x => x.ComponentId == elem.ComponentId);
-                            int available = warehouseDetails.Sum(x => x.Count);
+                            var warehouseComponents = context.WarehouseComponents.Where(x => x.ComponentId == elem.ComponentId);
+                            int available = warehouseComponents.Sum(x => x.Count);
                             if (available < left)
                                 throw new Exception("Недостаточно деталей на складе");
-                            foreach (var rec in warehouseDetails)
+                            foreach (var rec in warehouseComponents)
                             {
                                 int toRemove = left > rec.Count ? rec.Count : left;
                                 rec.Count -= toRemove;

@@ -29,7 +29,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     element = new Order { };
                     context.Orders.Add(element);
                 }
-                element.ProductId = model.ProductId == 0 ? element.ProductId : model.ProductId;
+                element.ProductId = model.ProductId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
@@ -65,6 +65,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ProductId = rec.ProductId,
                     ProductName = rec.Product.ProductName,
                     Count = rec.Count,
                     Sum = rec.Sum,

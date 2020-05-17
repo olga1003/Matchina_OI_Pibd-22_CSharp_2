@@ -224,36 +224,23 @@ namespace ConcreteGoodsPlantListImplement.Implements
             return result;
         }
 
-        public void DeleteFromWarehouse(int productId, int count)
+        public void DeleteFromWarehouse(int ProductId, int ProductsCount)
         {
-         /*   var ProductComponents = source.ProductComponents.Where(rec => rec.Id == model.ProductId).ToList();
-
-            foreach (var pc in ProductComponents)
+            var ProductComponents = source.ProductComponents.Where(x => x.ProductId == ProductId);
+            if (ProductComponents.Count() == 0) return;
+            foreach (var elem in ProductComponents)
             {
-                var warehouseComponents = source.WarehouseComponents.Where(rec => rec.ComponentId == pc.ComponentId);
-                int sum = warehouseComponents.Sum(rec => rec.Count);
-                if (sum < pc.Count * model.Count)
+                int left = elem.Count * ProductsCount;
+                var warehouseComponents = source.ProductComponents.FindAll(x => x.ComponentId == elem.ComponentId);
+                foreach (var rec in warehouseComponents)
                 {
-                    throw new Exception("Недостаточно компонентов на складе");
+                    int toRemove = left > rec.Count ? rec.Count : left;
+                    rec.Count -= toRemove;
+                    left -= toRemove;
+                    if (left == 0) break;
                 }
-                else
-                {
-                    int left = pc.Count * model.Count;
-                    foreach (var ws in warehouseComponents)
-                    {
-                        if (ws.Count >= left)
-                        {
-                            ws.Count -= left;
-                            break;
-                        }
-                        else
-                        {
-                            left -= ws.Count;
-                            ws.Count = 0;
-                        }
-                    }
-                }
-            }*/
+            }
+            return;
         }
     }
 }

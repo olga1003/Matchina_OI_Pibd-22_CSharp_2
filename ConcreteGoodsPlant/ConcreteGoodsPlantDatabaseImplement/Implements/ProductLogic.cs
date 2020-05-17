@@ -3,7 +3,6 @@ using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.BindingModels;
 using PlantBusinessLogic.ViewModels;
 using ConcreteGoodsPlantDatabaseImplement.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;using Microsoft.EntityFrameworkCore;
 
@@ -126,7 +125,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                    Id = rec.Id,
                    ProductName = rec.ProductName,
                    Price = rec.Price,
-                   ProductComponents = context.ProductComponents.Include(recPC => recPC.Component)
+                   ProductComponents = context.ProductComponents
                .Where(recPC => recPC.ProductId == rec.Id)
                .ToDictionary(recPC => recPC.ComponentId, recPC =>
                 (recPC.Component?.ComponentName, recPC.Count))
