@@ -5,8 +5,6 @@ using System;
 using PlantBusinessLogic.BindingModels;
 using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.ViewModels;
-using System.Collections.Generic;
-using System.Text;
 using ConcreteGoodsPlantFileImplement.Models;
 using System.Linq;
 
@@ -153,23 +151,35 @@ namespace ConcreteGoodsPlantFileImplement.Implements
             return result;
         }
 
-        public void DeleteFromWarehouse(int ProductId, int ProductsCount)
+        public void DeleteFromWarehouse(int productId, int count)
         {
-            var ProductComponents = source.ProductComponents.Where(x => x.ProductId == ProductId);
-            if (ProductComponents.Count() == 0) return;
-            foreach (var elem in ProductComponents)
+        /*    var ProductComponents = source.ProductComponents.Where(rec => rec.Id == model.ProductId).ToList();
+            foreach (var pc in ProductComponents)
             {
-                int left = elem.Count * ProductsCount;
-                var warehouseComponents = source.WarehouseComponents.FindAll(x => x.ComponentId == elem.ComponentId);
-                foreach (var rec in warehouseComponents)
+                var warehouseComponents = source.WarehouseComponents.Where(rec => rec.ComponentId == pc.ComponentId);
+                int sum = warehouseComponents.Sum(rec => rec.Count);
+                if (sum < pc.Count * model.Count)
                 {
-                    int toRemove = left > rec.Count ? rec.Count : left;
-                    rec.Count -= toRemove;
-                    left -= toRemove;
-                    if (left == 0) break;
+                    throw new Exception("Недостаточно компонентов на складе");
                 }
-            }
-            return;
+                else
+                {
+                    int left = pc.Count * model.Count;
+                    foreach (var ws in warehouseComponents)
+                    {
+                        if (ws.Count >= left)
+                        {
+                            ws.Count -= left;
+                            break;
+                        }
+                        else
+                        {
+                            left -= ws.Count;
+                            ws.Count = 0;
+                        }
+                    }
+                }
+            }*/
         }
     }
 }

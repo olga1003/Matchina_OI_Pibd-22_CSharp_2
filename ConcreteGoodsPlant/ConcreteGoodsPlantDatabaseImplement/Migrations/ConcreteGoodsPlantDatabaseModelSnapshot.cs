@@ -4,16 +4,14 @@ using ConcreteGoodsPlantDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 {
     [DbContext(typeof(ConcreteGoodsPlantDatabase))]
-    [Migration("20200302093145_InitialCreate")]
-    partial class InitialCreate
+    partial class ConcreteGoodsPlantDatabaseModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,12 +81,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductsId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductsId");
 
                     b.ToTable("Products");
                 });
@@ -118,6 +111,48 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                     b.ToTable("ProductComponents");
                 });
 
+            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Warehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("WarehouseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Warehouses");
+                });
+
+            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.WarehouseComponent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ComponentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.HasIndex("WarehouseId")
+                        .IsUnique();
+
+                    b.ToTable("WarehouseComponents");
+                });
+
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Product")
@@ -125,13 +160,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Product", b =>
-                {
-                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductsId");
                 });
 
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.ProductComponent", b =>
@@ -143,8 +171,23 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductComponents")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.WarehouseComponent", b =>
+                {
+                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Component", "Component")
+                        .WithMany("WarehouseComponents")
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Warehouse", "Warehouse")
+                        .WithOne("WarehouseComponent")
+                        .HasForeignKey("ConcreteGoodsPlantDatabaseImplement.Models.WarehouseComponent", "WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
