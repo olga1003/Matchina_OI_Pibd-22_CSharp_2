@@ -46,7 +46,6 @@
             this.comboBoxWarehouse.Name = "comboBoxWarehouse";
             this.comboBoxWarehouse.Size = new System.Drawing.Size(299, 24);
             this.comboBoxWarehouse.TabIndex = 21;
-            this.comboBoxWarehouse.SelectedIndexChanged += new System.EventHandler(this.comboBoxWarehouse_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -56,7 +55,6 @@
             this.label3.Size = new System.Drawing.Size(52, 17);
             this.label3.TabIndex = 20;
             this.label3.Text = "Склад:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // buttonCancel
             // 
@@ -88,7 +86,6 @@
             this.comboBoxComponent.Name = "comboBoxComponent";
             this.comboBoxComponent.Size = new System.Drawing.Size(299, 24);
             this.comboBoxComponent.TabIndex = 17;
-            this.comboBoxComponent.SelectedIndexChanged += new System.EventHandler(this.comboBoxComponent_SelectedIndexChanged);
             // 
             // textBoxCount
             // 
@@ -97,7 +94,6 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(300, 22);
             this.textBoxCount.TabIndex = 16;
-            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // label2
             // 
@@ -107,7 +103,6 @@
             this.label2.Size = new System.Drawing.Size(90, 17);
             this.label2.TabIndex = 15;
             this.label2.Text = "Количество:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -117,7 +112,6 @@
             this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 14;
             this.label1.Text = "Компонент:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // FormFillWarehouse
             // 

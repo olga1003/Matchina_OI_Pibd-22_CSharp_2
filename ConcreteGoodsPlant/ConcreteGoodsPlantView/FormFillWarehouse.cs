@@ -114,35 +114,5 @@ namespace ConcreteGoodsPlantView
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxWarehouse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxComponent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxCount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
