@@ -21,8 +21,8 @@ namespace PlantRestApi.Controllers
 
         public ClientController(IClientLogic logic, IMessageInfoLogic messageLogic)
         {
-            _logic = logic;
-            _messageLogic = messageLogic;
+            this._logic = logic;
+            this._messageLogic = messageLogic;
         }
         [HttpGet]
         public ClientViewModel Login(string login, string password) => _logic.Read(new

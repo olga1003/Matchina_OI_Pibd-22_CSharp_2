@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using ConcreteGoodsPlantDatabaseImplement.Implements;
 using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.BusinessLogics;
-
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

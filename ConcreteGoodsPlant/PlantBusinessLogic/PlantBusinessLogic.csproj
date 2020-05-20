@@ -9,7 +9,7 @@
     <PackageReference Include="MailKit" Version="2.6.0" />
     <PackageReference Include="PDFsharp-MigraDoc-GDI" Version="1.50.5147" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
-    <PackageReference Include="Unity" Version="5.11.3" />
+    <PackageReference Include="Unity" Version="5.11.6" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using PlantBusinessLogic.Interfaces;
+using PlantBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +34,7 @@ namespace PlantClientView
         {
             try
             {
-                var list = logic.Read(null);
+                var list = APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}");
 
                 if (list != null)
                 {

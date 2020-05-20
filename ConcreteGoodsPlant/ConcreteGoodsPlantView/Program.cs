@@ -30,8 +30,7 @@ namespace ConcreteGoodsPlantView
                 MailPassword = ConfigurationManager.AppSettings["MailPassword"],
             });
             // создаем таймер
-            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new
-           MailCheckInfo
+            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new MailCheckInfo
             {
                 PopHost = ConfigurationManager.AppSettings["PopHost"],
                 PopPort = Convert.ToInt32(ConfigurationManager.AppSettings["PopPort"]),
