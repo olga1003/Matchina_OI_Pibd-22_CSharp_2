@@ -237,6 +237,12 @@
     <Compile Include="FormProductsConcrete.Designer.cs">
       <DependentUpon>FormProductsConcrete.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportComponents.Designer.cs">
+      <DependentUpon>FormReportComponents.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,12 @@
     </Compile>
     <Compile Include="FormReportProductComponents.Designer.cs">
       <DependentUpon>FormReportProductComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents.Designer.cs">
+      <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
     </Compile>
     <Compile Include="FormWarehouse.cs">
       <SubType>Form</SubType>
@@ -287,11 +299,17 @@
     <EmbeddedResource Include="FormProductsConcrete.resx">
       <DependentUpon>FormProductsConcrete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportComponents.resx">
+      <DependentUpon>FormReportComponents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportOrders.resx">
       <DependentUpon>FormReportOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportProductComponents.resx">
       <DependentUpon>FormReportProductComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportWarehouseComponents.resx">
+      <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWarehouse.resx">
       <DependentUpon>FormWarehouse.cs</DependentUpon>
@@ -308,8 +326,30 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReportComponents.rdlc" />
     <EmbeddedResource Include="ReportProductComponent.rdlc" />
     <None Include="packages.config" />
+    <None Include="PlantBusinessLogic.BindingModels.ChangeStatusBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.ComponentBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.CreateOrderBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.OrderBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.ProductConcreteBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.ReportBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.WarehouseBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BindingModels.WarehouseComponentBindingModel.datasource" />
+    <None Include="PlantBusinessLogic.BusinessLogics.MainLogic.datasource" />
+    <None Include="PlantBusinessLogic.BusinessLogics.ReportLogic.datasource" />
+    <None Include="PlantBusinessLogic.Interfaces.IComponentLogic.datasource" />
+    <None Include="PlantBusinessLogic.Interfaces.IOrderLogic.datasource" />
+    <None Include="PlantBusinessLogic.Interfaces.IProductLogic.datasource" />
+    <None Include="PlantBusinessLogic.Interfaces.IWarehouseLogic.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.ComponentViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.OrderViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.ProductViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.ReportProductComponentViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.WarehouseComponentViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.WarehouseViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
