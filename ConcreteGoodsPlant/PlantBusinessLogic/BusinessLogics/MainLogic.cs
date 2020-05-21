@@ -33,8 +33,7 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 MailAddress = clientLogic.Read(new ClientBindingModel
                 {
-                    Id =
-           model.ClientId
+                    Id = model.ClientId
                 })?[0]?.Email,
                 Subject = $"Новый заказ",
                 Text = $"Заказ принят."
@@ -76,8 +75,7 @@ namespace PlantBusinessLogic.BusinessLogics
                 {
                     MailAddress = clientLogic.Read(new ClientBindingModel
                     {
-                        Id =
-               order.ClientId
+                        Id = order.ClientId
                     })?[0]?.Email,
                     Subject = $"Заказ №{order.Id}",
                     Text = $"Заказ №{order.Id} передан в работу."

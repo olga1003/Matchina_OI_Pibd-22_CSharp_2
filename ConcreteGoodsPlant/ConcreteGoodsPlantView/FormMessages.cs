@@ -49,5 +49,10 @@ namespace ConcreteGoodsPlantView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void buttonRef_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }
