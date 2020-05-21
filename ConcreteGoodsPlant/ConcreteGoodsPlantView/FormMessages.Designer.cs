@@ -49,7 +49,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView);
             this.Name = "FormMessages";
-            this.Text = "FormMessages";
+            this.Text = "Сообщения";
+            this.Load += new System.EventHandler(this.FormMessages_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

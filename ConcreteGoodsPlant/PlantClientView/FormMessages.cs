@@ -15,13 +15,8 @@ namespace PlantClientView
 {
     public partial class FormMessages : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly IMessageInfoLogic logic;
         public FormMessages()
         {
-
             InitializeComponent();
         }
 
