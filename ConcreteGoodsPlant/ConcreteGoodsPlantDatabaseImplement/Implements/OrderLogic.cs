@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ConcreteGoodsPlantDatabaseImplement.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConcreteGoodsPlantDatabaseImplement.Implements
 {
@@ -60,20 +61,23 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                .Include(rec => rec.Product)
-                .Where(rec => model == null || rec.Id == model.Id)
+                .Where(
+                    rec => model == null
+                    || (rec.Id == model.Id && model.Id.HasValue)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                )
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ProductId = rec.ProductId,
-                    ProductName = rec.Product.ProductName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement
+                    DateImplement = rec.DateImplement,
+                    ProductName = rec.Product.ProductName
                 })
-            .ToList();
+                .ToList();
             }
         }
     }
