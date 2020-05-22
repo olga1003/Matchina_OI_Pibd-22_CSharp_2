@@ -17,23 +17,22 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             {
                 return context.Warehouses
                 .ToList()
-               .Select(rec => new WarehouseViewModel
-               {
-                   Id = rec.Id,
-                   WarehouseName = rec.WarehouseName,
-                   WarehouseComponents = context.WarehouseComponents
-               .Include(recWC => recWC.Component)
-               .Where(recWC => recWC.WarehouseId == rec.Id).
-               Select(x => new WarehouseComponentViewModel
-               {
-                   Id = x.Id,
-                   WarehouseId = x.WarehouseId,
-                   ComponentId = x.ComponentId,
-                   ComponentName = context.Components.FirstOrDefault(y => y.Id == x.ComponentId).ComponentName,
-                   Count = x.Count
-               })
-               .ToList()
-               })
+                .Select(rec => new WarehouseViewModel
+                {
+                    Id = rec.Id,
+                    WarehouseName = rec.WarehouseName,
+                    WarehouseComponents = context.WarehouseComponents.Include(recWD => recWD.Component)
+                    .Where(recWD => recWD.WarehouseId == rec.Id)
+                    .Select(x => new WarehouseComponentViewModel
+                    {
+                        Id = x.Id,
+                        WarehouseId = x.WarehouseId,
+                        ComponentId = x.ComponentId,
+                        ComponentName = context.Components.FirstOrDefault(y => y.Id == x.ComponentId).ComponentName,
+                        Count = x.Count
+                    })
+                .ToList()
+                })
             .ToList();
             }
         }

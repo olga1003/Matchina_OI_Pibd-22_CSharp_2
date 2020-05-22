@@ -348,7 +348,7 @@
     <None Include="PlantBusinessLogic.ViewModels.ProductViewModel.datasource" />
     <None Include="PlantBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
     <None Include="PlantBusinessLogic.ViewModels.ReportProductComponentViewModel.datasource" />
-    <None Include="PlantBusinessLogic.ViewModels.WarehouseComponentViewModel.datasource" />
+    <None Include="PlantBusinessLogic.ViewModels.ReportWarehouseComponentViewModel.datasource" />
     <None Include="PlantBusinessLogic.ViewModels.WarehouseViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
