@@ -46,8 +46,8 @@ namespace ConcreteGoodsPlantView
                     }
                 }
             }
-        }
 
+        }
         private void reportViewer_Load(object sender, EventArgs e)
         {
             try

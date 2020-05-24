@@ -33,6 +33,7 @@ namespace ConcreteGoodsPlantView
             {
                 var dataSource = logic.GetWarehouseComponents();
                 ReportDataSource source = new ReportDataSource("DataSetWarehouseComponents", dataSource);
+                reportViewer.LocalReport.DataSources.Clear();
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }

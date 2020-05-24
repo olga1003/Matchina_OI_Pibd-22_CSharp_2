@@ -30,11 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ReportWarehouseComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ButtonToPdf = new System.Windows.Forms.Button();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ReportWarehouseComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ReportProductComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReportWarehouseComponentViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ReportWarehouseComponentViewModelBindingSource
+            // 
+            this.ReportWarehouseComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportWarehouseComponentViewModel);
             // 
             // ButtonToPdf
             // 
@@ -60,9 +66,9 @@
             this.reportViewer.Size = new System.Drawing.Size(774, 377);
             this.reportViewer.TabIndex = 9;
             // 
-            // ReportWarehouseComponentViewModelBindingSource
+            // ReportProductComponentViewModelBindingSource
             // 
-            this.ReportWarehouseComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportWarehouseComponentViewModel);
+            this.ReportProductComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportProductComponentViewModel);
             // 
             // FormReportComponents
             // 
@@ -75,6 +81,7 @@
             this.Text = "Список компонентов ";
             this.Load += new System.EventHandler(this.reportViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ReportWarehouseComponentViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,5 +91,6 @@
         private System.Windows.Forms.Button ButtonToPdf;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource ReportWarehouseComponentViewModelBindingSource;
+        private System.Windows.Forms.BindingSource ReportProductComponentViewModelBindingSource;
     }
 }
