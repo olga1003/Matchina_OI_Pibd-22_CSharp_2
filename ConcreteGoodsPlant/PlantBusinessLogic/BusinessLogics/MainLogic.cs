@@ -22,19 +22,17 @@ namespace PlantBusinessLogic.BusinessLogics
         {
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
-                ClientId = model.ClientId,
                 ProductId = model.ProductId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят
             });
+
             MailLogic.MailSendAsync(new MailSendInfo
             {
-                MailAddress = clientLogic.Read(new ClientBindingModel
-                {
-                    Id = model.ClientId
-                })?[0]?.Email,
+                MailAddress = clientLogic.Read(new ClientBindingModel { Id = model.ClientId })?[0]?.Email,
                 Subject = $"Новый заказ",
                 Text = $"Заказ принят."
             });
