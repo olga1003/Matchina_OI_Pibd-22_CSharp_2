@@ -11,7 +11,7 @@ namespace ConcreteGoodsPlantView
 {
     public partial class FormProductConcrete : Form
     {
-   
+
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
@@ -55,7 +55,14 @@ namespace ConcreteGoodsPlantView
         {
             try
             {
-                Program.ConfigGrid(logic.Read(null), dataGridView);
+                if (productComponents != null)
+                {
+                    dataGridView.Rows.Clear();
+                    foreach (var pc in productComponents)
+                    {
+                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
+                    }
+                }
             }
             catch (Exception ex)
             {
