@@ -133,8 +133,7 @@ namespace PlantBusinessLogic.BusinessLogics
                 Id = order.Id,
                 ClientId = order.ClientId,
                 ProductId = order.ProductId,
-                ImplementerId = order.ImplementerId,
-
+                ImplementerId = model.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
