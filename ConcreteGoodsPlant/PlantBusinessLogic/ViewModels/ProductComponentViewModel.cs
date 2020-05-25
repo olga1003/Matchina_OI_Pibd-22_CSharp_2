@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
-
+using PlantBusinessLogic.Attributes;
+using PlantBusinessLogic.Enums;
 namespace PlantBusinessLogic.ViewModels
 {
     [DataContract]
-    class ProductComponentViewModel
+    class ProductComponentViewModel : BaseViewModel
     {
-        [DataMember]
-        public int Id { get; set; }
-
         [DataMember]
         public int ProductId { get; set; }
 
@@ -19,11 +17,23 @@ namespace PlantBusinessLogic.ViewModels
         public int ComponentId { get; set; }
 
         [DataMember]
-        [DisplayName("Компонент")]
+        [Column(title: "Компонент", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
 
         [DataMember]
-        [DisplayName("Количество")]
+        [Column(title: "Количество", width: 100)]
         public int Count { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "ComponentName",
+            "Count",
+            "ImplementerFIO",
+            "Count",
+            "Sum",
+            "Status",
+            "DateCreate",
+            "DateImplement"
+        };
     }
 }
