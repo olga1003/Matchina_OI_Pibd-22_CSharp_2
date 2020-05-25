@@ -119,10 +119,7 @@ namespace PlantBusinessLogic.BusinessLogics
         }
         public void PayOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -135,8 +132,9 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
-                ImplementerId = order.ImplementerId,
                 ProductId = order.ProductId,
+                ImplementerId = order.ImplementerId,
+
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -147,8 +145,7 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 MailAddress = clientLogic.Read(new ClientBindingModel
                 {
-                    Id =
-order.ClientId
+                    Id = order.ClientId
                 })?[0]?.Email,
                 Subject = $"Заказ №{order.Id}",
                 Text = $"Заказ №{order.Id} оплачен."

@@ -7,9 +7,6 @@ namespace PlantClientView
     static class Program
     {
         public static ClientViewModel Client { get; set; }
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
@@ -24,6 +21,5 @@ namespace PlantClientView
                 Application.Run(new FormMain());
             }
         }
-
     }
 }
