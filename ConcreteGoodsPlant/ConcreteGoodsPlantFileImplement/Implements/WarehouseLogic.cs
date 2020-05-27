@@ -96,6 +96,7 @@ namespace ConcreteGoodsPlantFileImplement.Implements
         }
         public void DelElement(int id)
         {
+            source.WarehouseComponents.RemoveAll(x => x.WarehouseId == id);
             var elem = source.Warehouses.FirstOrDefault(x => x.Id == id);
             if (elem != null)
                 source.Warehouses.Remove(elem);
@@ -137,7 +138,6 @@ namespace ConcreteGoodsPlantFileImplement.Implements
         }
         public bool CheckAvailable(int ProductId, int ProductsCount)
         {
-            bool result = true;
             var ProductComponents = source.ProductComponents
             .Where(x => x.ProductId == ProductId);
             if (ProductComponents.Count() == 0)
@@ -150,7 +150,7 @@ namespace ConcreteGoodsPlantFileImplement.Implements
                 if (count < elem.Count * ProductsCount)
                     return false;
             }
-            return result;
+            return true;
         }
 
         public void DeleteFromWarehouse(int ProductId, int ProductsCount)

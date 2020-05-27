@@ -213,9 +213,10 @@ namespace ConcreteGoodsPlantListImplement.Implements
         }
         public bool CheckAvailable(int ProductId, int ProductsCount)
         {
-            bool result = true;
-            var ProductComponents = source.ProductComponents.Where(x => x.ProductId == ProductId);
-            if (ProductComponents.Count() == 0) return false;
+            var ProductComponents = source.ProductComponents
+              .Where(x => x.ProductId == ProductId);
+            if (ProductComponents.Count() == 0)
+                return false;
             foreach (var elem in ProductComponents)
             {
                 int count = 0;
@@ -224,7 +225,7 @@ namespace ConcreteGoodsPlantListImplement.Implements
                 if (count < elem.Count * ProductsCount)
                     return false;
             }
-            return result;
+            return true;
         }
 
         public void DeleteFromWarehouse(int ProductId, int ProductsCount)
