@@ -120,5 +120,17 @@ namespace ConcreteGoodsPlantView
             var form = Container.Resolve<FormProductsConcrete>();
             form.ShowDialog();
         }
+
+        private void ButtonFillWarehouse_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormFillWarehouse>();
+            form.ShowDialog();
+        }
+
+        private void СкладыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
     }
 }
