@@ -27,13 +27,7 @@ namespace PlantBusinessLogic.ViewModels
         {
             "Id",
             "ComponentName",
-            "Count",
-            "ImplementerFIO",
-            "Count",
-            "Sum",
-            "Status",
-            "DateCreate",
-            "DateImplement"
+            "Count"
         };
     }
 }
