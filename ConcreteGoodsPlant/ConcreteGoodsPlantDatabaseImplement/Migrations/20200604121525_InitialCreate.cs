@@ -148,8 +148,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_WarehouseComponents_WarehouseId",
                 table: "WarehouseComponents",
-                column: "WarehouseId",
-                unique: true);
+                column: "WarehouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

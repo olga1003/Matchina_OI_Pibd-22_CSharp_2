@@ -177,7 +177,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw ex;
+                        throw;
                     }
                 }
             }
