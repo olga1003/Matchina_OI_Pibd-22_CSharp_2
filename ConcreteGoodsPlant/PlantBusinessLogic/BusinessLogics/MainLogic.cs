@@ -41,21 +41,18 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!warehouseLogic.CheckAvailable(order.ProductId, order.Count))
-            {
-                throw new Exception("На складах не хватает компонентов");
-            }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
-            {
-                Id = order.Id,
-                ProductId = order.ProductId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
-            warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
+                warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    ProductId = order.ProductId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = null,
+                    Status = OrderStatus.Выполняется
+                });
+
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -78,7 +75,7 @@ namespace PlantBusinessLogic.BusinessLogics
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement,
+               DateImplement = DateTime.Now,
                 Status = OrderStatus.Готов
             });
         }

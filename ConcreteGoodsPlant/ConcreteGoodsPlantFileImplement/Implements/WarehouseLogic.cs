@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System;
 using PlantBusinessLogic.BindingModels;
 using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.ViewModels;
-using System.Collections.Generic;
-using System.Text;
 using ConcreteGoodsPlantFileImplement.Models;
 using System.Linq;
 
