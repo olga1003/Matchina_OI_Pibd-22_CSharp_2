@@ -10,40 +10,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 {
     [DbContext(typeof(ConcreteGoodsPlantDatabase))]
-    [Migration("20200606104132_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20200606095833_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FIO")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
-                });
 
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Component", b =>
                 {
@@ -68,9 +44,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -90,8 +63,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProductId");
 
@@ -185,12 +156,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Client", "Client")
-                        .WithMany("Orders")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Product")
                         .WithMany("Orders")
                         .HasForeignKey("ProductId")
