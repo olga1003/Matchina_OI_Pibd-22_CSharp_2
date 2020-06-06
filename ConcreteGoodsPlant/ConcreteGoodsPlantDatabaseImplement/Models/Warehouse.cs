@@ -12,6 +12,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         [Required]
         public string WarehouseName { get; set; }
 
-        public virtual WarehouseComponent WarehouseComponent { get; set; }
+        public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }
