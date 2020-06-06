@@ -11,14 +11,14 @@ namespace PlantBusinessLogic.BusinessLogics
 {
     public class ReportLogic
     {
-        private readonly IComponentLogic componentLogic;
+        private readonly IWarehouseLogic warehouseLogic;
         private readonly IProductLogic productLogic;
         private readonly IOrderLogic orderLogic;
-        public ReportLogic(IProductLogic productLogic, IComponentLogic componentLogic,
+        public ReportLogic(IProductLogic productLogic, IWarehouseLogic warehouseLogic,
        IOrderLogic orderLLogic)
         {
             this.productLogic = productLogic;
-            this.componentLogic = componentLogic;
+            this.warehouseLogic = warehouseLogic;
             this.orderLogic = orderLLogic;
         }
         /// <summary>
@@ -46,6 +46,28 @@ namespace PlantBusinessLogic.BusinessLogics
             }
             return list;
         }
+        public List<ReportWarehouseComponentViewModel> GetWarehouseComponents()
+        {
+            var wahehouses = warehouseLogic.GetList();
+            var list = new List<ReportWarehouseComponentViewModel>();
+
+            foreach (var wahehouse in wahehouses)
+            {
+                foreach (var wc in wahehouse.WarehouseComponents)
+                {
+                    var record = new ReportWarehouseComponentViewModel
+                    {
+                        WarehouseName = wahehouse.WarehouseName,
+                        ComponentName = wc.ComponentName,
+                        Count = wc.Count
+                    };
+
+                    list.Add(record);
+                }
+            }
+            return list;
+        }
+
         /// <summary>
         /// Получение списка заказов за определенный период
         /// </summary>
@@ -103,6 +125,38 @@ namespace PlantBusinessLogic.BusinessLogics
                 FileName = model.FileName,
                 Title = "Список заказов",
                 Orders = GetOrders(model)
+            });
+        }
+        public void SaveWarehousesToWordFile(ReportBindingModel model)
+        {
+            SaveToWord.CreateDoc(new WordInfo
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                Products = null,
+                Warehouses = warehouseLogic.GetList()
+            });
+        }
+
+        public void SaveWarehouseComponentsToExcelFile(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDoc(new ExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Список компонентов в складах",
+                Orders = null,
+                Warehouses = warehouseLogic.GetList()
+            });
+        }
+
+        public void SaveComponentsToPdfFile(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDoc(new PdfInfo
+            {
+                FileName = model.FileName,
+                Title = "Компонентов",
+                ProductComponents = null,
+                WarehouseComponents = GetWarehouseComponents()
             });
         }
     }

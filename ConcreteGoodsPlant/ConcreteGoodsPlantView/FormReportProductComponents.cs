@@ -46,8 +46,8 @@ namespace ConcreteGoodsPlantView
                     }
                 }
             }
-        }
 
+        }
         private void reportViewer_Load(object sender, EventArgs e)
         {
             try
@@ -62,5 +62,6 @@ namespace ConcreteGoodsPlantView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
