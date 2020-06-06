@@ -189,6 +189,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormClients .cs" />
+    <Compile Include="FormClients .Designer.cs">
+      <DependentUpon>FormClients .cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +279,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormClients .resx">
+      <DependentUpon>FormClients .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormComponent.resx">
       <DependentUpon>FormComponent.cs</DependentUpon>
     </EmbeddedResource>
