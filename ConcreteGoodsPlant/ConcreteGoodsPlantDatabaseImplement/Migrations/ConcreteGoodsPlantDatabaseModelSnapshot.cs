@@ -15,7 +15,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -147,8 +147,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 
                     b.HasIndex("ComponentId");
 
-                    b.HasIndex("WarehouseId")
-                        .IsUnique();
+                    b.HasIndex("WarehouseId");
 
                     b.ToTable("WarehouseComponents");
                 });
@@ -186,8 +185,8 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Warehouse", "Warehouse")
-                        .WithOne("WarehouseComponent")
-                        .HasForeignKey("ConcreteGoodsPlantDatabaseImplement.Models.WarehouseComponent", "WarehouseId")
+                        .WithMany("WarehouseComponents")
+                        .HasForeignKey("WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
