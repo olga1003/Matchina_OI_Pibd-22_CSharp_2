@@ -246,6 +246,12 @@
     <Compile Include="FormCreateOrder.Designer.cs">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFillWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFillWarehouse.Designer.cs">
+      <DependentUpon>FormFillWarehouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,12 @@
     <Compile Include="FormProductsConcrete.Designer.cs">
       <DependentUpon>FormProductsConcrete.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportComponents.Designer.cs">
+      <DependentUpon>FormReportComponents.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +293,24 @@
     </Compile>
     <Compile Include="FormReportProductComponents.Designer.cs">
       <DependentUpon>FormReportProductComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportWarehouseComponents.Designer.cs">
+      <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouse.Designer.cs">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWarehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouses.Designer.cs">
+      <DependentUpon>FormWarehouses.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -297,6 +327,9 @@
     <EmbeddedResource Include="FormCreateOrder.resx">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFillWarehouse.resx">
+      <DependentUpon>FormFillWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -309,11 +342,23 @@
     <EmbeddedResource Include="FormProductsConcrete.resx">
       <DependentUpon>FormProductsConcrete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportComponents.resx">
+      <DependentUpon>FormReportComponents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportOrders.resx">
       <DependentUpon>FormReportOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportProductComponents.resx">
       <DependentUpon>FormReportProductComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportWarehouseComponents.resx">
+      <DependentUpon>FormReportWarehouseComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouse.resx">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouses.resx">
+      <DependentUpon>FormWarehouses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
