@@ -15,6 +15,7 @@ namespace ConcreteGoodsPlantFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string ProductFileName = "Product.xml";
         private readonly string ProductComponentFileName = "ProductComponent.xml";
+        private readonly string ClientFileName = "Client.xml";
         private readonly string WarehouseFileName = "Warehouse.xml";
         private readonly string WarehouseComponentFileName = "WarehouseComponent.xml";
 
@@ -25,12 +26,14 @@ namespace ConcreteGoodsPlantFileImplement
         public List<Warehouse> Warehouses { get; set; }
         public List<WarehouseComponent> WarehouseComponents { get; set; }
 
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Components = LoadComponents();
             Orders = LoadOrders();
             Products = LoadProducts();
             ProductComponents = LoadProductComponents();
+            Clients = LoadClients();
             Warehouses = LoadWarehouses();
             WarehouseComponents = LoadWarehouseComponents();
 
@@ -51,6 +54,7 @@ namespace ConcreteGoodsPlantFileImplement
             SaveProductComponents();
             SaveWarehouses();
             SaveWarehouseComponents();
+            SaveClients();
         }
         private List<Component> LoadComponents()
         {
@@ -82,6 +86,7 @@ namespace ConcreteGoodsPlantFileImplement
                     list.Add(new Order
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         ProductId = Convert.ToInt32(elem.Element("ProductId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
@@ -114,6 +119,29 @@ namespace ConcreteGoodsPlantFileImplement
                     });
                 }
             }
+            return list;
+        }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        FIO = elem.Element("FIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+
             return list;
         }
         private List<ProductComponent> LoadProductComponents()
@@ -205,6 +233,7 @@ namespace ConcreteGoodsPlantFileImplement
                 {
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
+                       new XElement("ClientId", order.ClientId),
                     new XElement("ProductId", order.ProductId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
@@ -230,6 +259,25 @@ namespace ConcreteGoodsPlantFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ProductFileName);
+            }
+        }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("FIO", client.FIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
         private void SaveProductComponents()

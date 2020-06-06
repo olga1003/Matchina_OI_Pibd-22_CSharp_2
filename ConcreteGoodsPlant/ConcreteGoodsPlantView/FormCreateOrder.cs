@@ -13,20 +13,37 @@ namespace ConcreteGoodsPlantView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IProductLogic logicP;
+        private readonly IClientLogic logicC;
         private readonly MainLogic logicM;
-        public FormCreateOrder(IProductLogic logicP, MainLogic logicM)
+        public FormCreateOrder(IProductLogic logicP, IClientLogic logicC, MainLogic logicM)
         {
             InitializeComponent();
             this.logicP = logicP;
+            this.logicC = logicC;
             this.logicM = logicM;
         }        private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                var list = logicP.Read(null);
-                comboBoxProduct.DataSource = list;
-                comboBoxProduct.DisplayMember = "ProductName";
-                comboBoxProduct.ValueMember = "Id";             
+                var listP = logicP.Read(null);
+
+                if (listP != null)
+                {
+                    comboBoxProduct.DisplayMember = "ProductName";
+                    comboBoxProduct.ValueMember = "Id";
+                    comboBoxProduct.DataSource = listP;
+                    comboBoxProduct.SelectedItem = null;
+                }
+
+                var listC = logicC.Read(null);
+
+                if (listC != null)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.SelectedItem = null;
+                }
             }
             catch (Exception ex)
             {
@@ -71,11 +88,17 @@ namespace ConcreteGoodsPlantView
                MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

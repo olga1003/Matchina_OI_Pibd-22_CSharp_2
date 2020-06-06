@@ -4,18 +4,20 @@ using ConcreteGoodsPlantDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConcreteGoodsPlantDatabaseImplement.Migrations
 {
     [DbContext(typeof(ConcreteGoodsPlantDatabase))]
-    partial class ConcreteGoodsPlantDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20200506083959_Сlient")]
+    partial class Сlient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -140,47 +142,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                     b.ToTable("ProductComponents");
                 });
 
-            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Warehouse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("WarehouseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Warehouses");
-                });
-
-            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.WarehouseComponent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ComponentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WarehouseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ComponentId");
-
-                    b.HasIndex("WarehouseId");
-
-                    b.ToTable("WarehouseComponents");
-                });
-
             modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Client", "Client")
@@ -207,21 +168,6 @@ namespace ConcreteGoodsPlantDatabaseImplement.Migrations
                     b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Product", "Product")
                         .WithMany("ProductComponents")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ConcreteGoodsPlantDatabaseImplement.Models.WarehouseComponent", b =>
-                {
-                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Component", "Component")
-                        .WithMany("WarehouseComponents")
-                        .HasForeignKey("ComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConcreteGoodsPlantDatabaseImplement.Models.Warehouse", "Warehouse")
-                        .WithMany("WarehouseComponents")
-                        .HasForeignKey("WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -21,6 +21,7 @@ namespace PlantBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 ProductId = model.ProductId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -53,6 +54,16 @@ namespace PlantBusinessLogic.BusinessLogics
                     Status = OrderStatus.Выполняется
                 });
 
+            orderLogic.CreateOrUpdate(new OrderBindingModel
+            {
+                Id = order.Id,
+                ClientId = order.ClientId,
+                ProductId = order.ProductId,
+                Count = order.Count,
+                Sum = order.Sum,
+                DateCreate = order.DateCreate,
+                Status = OrderStatus.Выполняется
+            });
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -71,6 +82,7 @@ namespace PlantBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ProductId = order.ProductId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -96,6 +108,7 @@ namespace PlantBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ProductId = order.ProductId,
                 Count = order.Count,
                 Sum = order.Sum,

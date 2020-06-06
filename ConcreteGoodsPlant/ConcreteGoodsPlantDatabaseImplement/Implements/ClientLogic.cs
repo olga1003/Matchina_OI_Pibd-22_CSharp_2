@@ -1,31 +1,28 @@
 ﻿using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.BindingModels;
 using PlantBusinessLogic.ViewModels;
+using ConcreteGoodsPlantDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Linq;
-using ConcreteGoodsPlantDatabaseImplement.Models;
 
 namespace ConcreteGoodsPlantDatabaseImplement.Implements
 {
-    public class ComponentLogic : IComponentLogic
+    public class ClientLogic : IClientLogic
     {
-        public void CreateOrUpdate(ComponentBindingModel model)
+        public void CreateOrUpdate(ClientBindingModel model)
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                Component element = context.Components.FirstOrDefault(rec => 
-                rec.ComponentName == model.ComponentName && rec.Id != model.Id);
-
+                Client element = context.Clients.FirstOrDefault(rec => rec.Email == model.Email && rec.Id != model.Id);
                 if (element != null)
                 {
                     throw new Exception("Уже есть компонент с таким названием");
                 }
                 if (model.Id.HasValue)
                 {
-                    element = context.Components.FirstOrDefault(rec => rec.Id == 
-                    model.Id);
-
+                    element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
@@ -33,23 +30,24 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                 }
                 else
                 {
-                    element = new Component();
-                    context.Components.Add(element);
+                    element = new Client();
+                    context.Clients.Add(element);
                 }
-                element.ComponentName = model.ComponentName;
+                element.FIO = model.ClientFIO;
+                element.Password = model.Password;
+                element.Email = model.Email;
                 context.SaveChanges();
             }
         }
-        public void Delete(ComponentBindingModel model)
+
+        public void Delete(ClientBindingModel model)
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                Component element = context.Components.FirstOrDefault(rec => rec.Id ==
-                model.Id);
-
+                Client element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
                 if (element != null)
                 {
-                    context.Components.Remove(element);
+                    context.Clients.Remove(element);
                     context.SaveChanges();
                 }
                 else
@@ -58,18 +56,26 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                 }
             }
         }
-        public List<ComponentViewModel> Read(ComponentBindingModel model)
+
+        public List<ClientViewModel> Read(ClientBindingModel model)
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                return context.Components
-                .Where(rec => model == null || rec.Id == model.Id)
-                .Select(rec => new ComponentViewModel
+                List<ClientViewModel> clients = context.Clients.Where(
+                    rec => model == null
+                    || rec.Id == model.Id
+                    || rec.Email == model.Email && rec.Password == model.Password
+                ).Select(rec => new ClientViewModel
                 {
                     Id = rec.Id,
-                    ComponentName = rec.ComponentName
+                    ClientFIO = rec.FIO,
+                    Email = rec.Email,
+                    Password = rec.Password
                 })
                 .ToList();
+                if (clients.Count > 0)
+                    return clients;
+                return null;
             }
         }
     }

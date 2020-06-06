@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantBusinessLogic", "Plant
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcreteGoodsPlantListImplement", "ConcreteGoodsPlantListImplement\ConcreteGoodsPlantListImplement.csproj", "{D0C36165-A2A3-485B-ABFD-EE404145726F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteGoodsPlantFileImplement", "ConcreteGoodsPlantFileImplement\ConcreteGoodsPlantFileImplement.csproj", "{DE84DD00-6A20-4DF1-8F69-1BF0B335C5D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcreteGoodsPlantFileImplement", "ConcreteGoodsPlantFileImplement\ConcreteGoodsPlantFileImplement.csproj", "{DE84DD00-6A20-4DF1-8F69-1BF0B335C5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteGoodsPlantDatabaseImplement", "ConcreteGoodsPlantDatabaseImplement\ConcreteGoodsPlantDatabaseImplement.csproj", "{12AA8010-F740-41E8-8ED5-C19A2C02EC84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcreteGoodsPlantDatabaseImplement", "ConcreteGoodsPlantDatabaseImplement\ConcreteGoodsPlantDatabaseImplement.csproj", "{12AA8010-F740-41E8-8ED5-C19A2C02EC84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantRestApi", "PlantRestApi\PlantRestApi.csproj", "{DD85B8BB-4F71-4A0E-B281-C508A3F712AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantClientView", "PlantClientView\PlantClientView.csproj", "{7CB354C3-75C5-441C-AB42-DD5638E50AE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AA8010-F740-41E8-8ED5-C19A2C02EC84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD85B8BB-4F71-4A0E-B281-C508A3F712AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD85B8BB-4F71-4A0E-B281-C508A3F712AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD85B8BB-4F71-4A0E-B281-C508A3F712AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD85B8BB-4F71-4A0E-B281-C508A3F712AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
