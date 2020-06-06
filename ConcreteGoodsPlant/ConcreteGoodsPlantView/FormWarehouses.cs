@@ -1,4 +1,5 @@
-﻿using PlantBusinessLogic.Interfaces;
+﻿using PlantBusinessLogic.BindingModels;
+using PlantBusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -87,7 +88,7 @@ namespace ConcreteGoodsPlantView
 
                     try
                     {
-                        logic.DelElement(id);
+                        logic.DelElement(new WarehouseBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

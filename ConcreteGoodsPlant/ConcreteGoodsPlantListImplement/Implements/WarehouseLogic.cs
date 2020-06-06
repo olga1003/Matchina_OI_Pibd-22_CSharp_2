@@ -155,11 +155,11 @@ namespace ConcreteGoodsPlantListImplement.Implements
             source.Warehouses[index].WarehouseName = model.WarehouseName;
         }
 
-        public void DelElement(int id)
+        public void DelElement(WarehouseBindingModel model)
         {
             for (int i = 0; i < source.WarehouseComponents.Count; ++i)
             {
-                if (source.WarehouseComponents[i].WarehouseId == id)
+                if (source.WarehouseComponents[i].WarehouseId == model.Id)
                 {
                     source.WarehouseComponents.RemoveAt(i--);
                 }
@@ -167,7 +167,7 @@ namespace ConcreteGoodsPlantListImplement.Implements
 
             for (int i = 0; i < source.Warehouses.Count; ++i)
             {
-                if (source.Warehouses[i].Id == id)
+                if (source.Warehouses[i].Id == model.Id)
                 {
                     source.Warehouses.RemoveAt(i);
                     return;

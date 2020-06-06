@@ -126,19 +126,32 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             }
         }
 
-        public void DelElement(int id)
+        public void DelElement(WarehouseBindingModel model)
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                var elem = context.Warehouses.FirstOrDefault(x => x.Id == id);
-                if (elem != null)
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    context.Warehouses.Remove(elem);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Элемент не найден");
+                    try
+                    {
+                        context.WarehouseComponents.RemoveRange(context.WarehouseComponents.Where(rec => rec.WarehouseId == model.Id));
+                        Warehouse element = context.Warehouses.FirstOrDefault(rec => rec.Id == model.Id);
+                        if (element != null)
+                        {
+                            context.Warehouses.Remove(element);
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            throw new Exception("Элемент не найден");
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
         }

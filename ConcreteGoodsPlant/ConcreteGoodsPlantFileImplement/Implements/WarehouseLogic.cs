@@ -91,9 +91,9 @@ namespace ConcreteGoodsPlantFileImplement.Implements
                 throw new Exception("Элемент не найден");
             }
         }
-        public void DelElement(int id)
+        public void DelElement(WarehouseBindingModel model)
         {
-            var elem = source.Warehouses.FirstOrDefault(x => x.Id == id);
+            var elem = source.Warehouses.FirstOrDefault(x => x.Id == model.Id);
             if (elem != null)
                 source.Warehouses.Remove(elem);
             else
