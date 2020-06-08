@@ -20,7 +20,7 @@ namespace PlantWarehouseView
         {
             if (!string.IsNullOrEmpty(textBoxPassword.Text))
             {
-                if (textBoxPassword.Text == ConfigurationManager.AppSettings["123"])
+                if (textBoxPassword.Text == ConfigurationManager.AppSettings["Password"])
                 {
                     Program.IsLogined = true;
                     Close();
