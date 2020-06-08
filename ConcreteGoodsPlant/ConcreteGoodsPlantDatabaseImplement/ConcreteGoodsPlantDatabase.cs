@@ -12,7 +12,7 @@ namespace ConcreteGoodsPlantDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source = COMPUTER\SQLEXPRESS;Initial Catalog=ConcreteGoodsPlantDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source = COMPUTER\SQLEXPRESS;Initial Catalog=ConcreteGoodsPlantHmDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
@@ -20,6 +20,8 @@ namespace ConcreteGoodsPlantDatabaseImplement
         public virtual DbSet<Product> Products { set; get; }
         public virtual DbSet<ProductComponent> ProductComponents { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Warehouse> Warehouses { set; get; }
+        public virtual DbSet<WarehouseComponent> WarehouseComponents { set; get; }
         public virtual DbSet<Client> Clients { set; get; }
         public virtual DbSet<Implementer> Implementers { set; get; }
     }

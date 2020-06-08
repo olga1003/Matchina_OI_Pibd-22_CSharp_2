@@ -12,5 +12,8 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public string ComponentName { get; set; }
         [ForeignKey("ComponentId")]
         public virtual List<ProductComponent> ProductComponents { get; set; }
+
+        [ForeignKey("ComponentId")]
+        public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }

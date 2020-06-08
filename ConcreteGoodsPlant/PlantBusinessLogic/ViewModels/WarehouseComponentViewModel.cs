@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.Serialization;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace PlantBusinessLogic.ViewModels
 {
-    [DataContract]
-    class ProductComponentViewModel
+    public class WarehouseComponentViewModel
     {
-        [DataMember]
         public int Id { get; set; }
 
-        [DataMember]
-        public int ProductId { get; set; }
+        public int WarehouseId { get; set; }
 
-        [DataMember]
         public int ComponentId { get; set; }
 
-        [DataMember]
         [DisplayName("Компонент")]
         public string ComponentName { get; set; }
 
-        [DataMember]
         [DisplayName("Количество")]
         public int Count { get; set; }
     }

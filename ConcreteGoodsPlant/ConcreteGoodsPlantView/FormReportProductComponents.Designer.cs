@@ -33,7 +33,9 @@
             this.ReportProductComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ButtonSaveToPDF = new System.Windows.Forms.Button();
+            this.ReportWarehouseComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportWarehouseComponentViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportProductComponentViewModelBindingSource
@@ -42,10 +44,10 @@
             // 
             // reportViewer
             // 
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.ReportProductComponentViewModelBindingSource;
+            reportDataSource1.Name = "DataSetWarehouseComponents";
+            reportDataSource1.Value = this.ReportWarehouseComponentViewModelBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "ConcreteGoodsPlantView.ReportProductComponent.rdlc";
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "ConcreteGoodsPlantView.ReportComponents.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(3, 50);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
@@ -63,6 +65,10 @@
             this.ButtonSaveToPDF.UseVisualStyleBackColor = true;
             this.ButtonSaveToPDF.Click += new System.EventHandler(this.ButtonSaveToPDF_Click);
             // 
+            // ReportWarehouseComponentViewModelBindingSource
+            // 
+            this.ReportWarehouseComponentViewModelBindingSource.DataSource = typeof(PlantBusinessLogic.ViewModels.ReportWarehouseComponentViewModel);
+            // 
             // FormReportProductComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -73,6 +79,7 @@
             this.Name = "FormReportProductComponents";
             this.Text = "Компоненты и изделия";
             ((System.ComponentModel.ISupportInitialize)(this.ReportProductComponentViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportWarehouseComponentViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -82,5 +89,6 @@
         private System.Windows.Forms.Button ButtonSaveToPDF;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource ReportProductComponentViewModelBindingSource;
+        private System.Windows.Forms.BindingSource ReportWarehouseComponentViewModelBindingSource;
     }
 }

@@ -30,6 +30,8 @@ namespace PlantRestApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IClientLogic, ClientLogic>();
+            services.AddTransient<IWarehouseLogic, WarehouseLogic>();
+            services.AddTransient<IComponentLogic, ComponentLogic>();
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IProductLogic, ProductLogic>();
             services.AddTransient<MainLogic>();
