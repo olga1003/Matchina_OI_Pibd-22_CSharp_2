@@ -20,5 +20,6 @@ namespace PlantBusinessLogic.BindingModels
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
         public bool? FreeOrders { get; set; }
+        public bool? NotEnoughComponents { get; set; }
     }
 }

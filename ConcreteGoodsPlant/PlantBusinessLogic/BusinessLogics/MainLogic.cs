@@ -41,27 +41,35 @@ namespace PlantBusinessLogic.BusinessLogics
                 {
                     throw new Exception("Не найден заказ");
                 }
-                if (order.Status != OrderStatus.Принят)
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Требуются_материалы)
                 {
-                    throw new Exception("Заказ не в статусе \"Принят\"");
+                    throw new Exception("Заказ не в статусе \"Принят\" или \"Требуются материалы\"");
                 }
                 if (order.ImplementerId.HasValue)
                 {
                     throw new Exception("У заказа уже есть исполнитель");
                 }
-                warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
-                orderLogic.CreateOrUpdate(new OrderBindingModel
+                var orderModel = new OrderBindingModel
                 {
                     Id = order.Id,
-                    ClientId = order.ClientId,
-                    ImplementerId = model.ImplementerId,
                     ProductId = order.ProductId,
                     Count = order.Count,
                     Sum = order.Sum,
-                    DateCreate = order.DateCreate,
-                    DateImplement = DateTime.Now,
-                    Status = OrderStatus.Выполняется
-                });
+                    ClientId = order.ClientId,
+                    DateCreate = order.DateCreate
+                };
+                try
+                {
+                    warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
+                    orderModel.DateImplement = DateTime.Now;
+                    orderModel.Status = OrderStatus.Выполняется;
+                    orderModel.ImplementerId = model.ImplementerId;
+                }
+                catch
+                {
+                    orderModel.Status = OrderStatus.Требуются_материалы;
+                }
+                orderLogic.CreateOrUpdate(orderModel);              
             }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
