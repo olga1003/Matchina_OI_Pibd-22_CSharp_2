@@ -10,9 +10,11 @@ namespace PlantBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IWarehouseLogic warehouseLogic;
+        public MainLogic(IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
         {
             this.orderLogic = orderLogic;
+            this.warehouseLogic = warehouseLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -40,16 +42,19 @@ namespace PlantBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
-            {
-                Id = order.Id,
-                ClientId = order.ClientId,
-                ProductId = order.ProductId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                Status = OrderStatus.Выполняется
-            });
+                warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    ClientId = order.ClientId,
+                    Id = order.Id,
+                    ProductId = order.ProductId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = null,
+                    Status = OrderStatus.Выполняется
+                });
+
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
@@ -73,7 +78,7 @@ namespace PlantBusinessLogic.BusinessLogics
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement,
+               DateImplement = DateTime.Now,
                 Status = OrderStatus.Готов
             });
         }
@@ -102,6 +107,10 @@ namespace PlantBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillWarehouse(WarehouseComponentBindingModel model)
+        {
+            warehouseLogic.AddComponent(model);
         }
     }
 }

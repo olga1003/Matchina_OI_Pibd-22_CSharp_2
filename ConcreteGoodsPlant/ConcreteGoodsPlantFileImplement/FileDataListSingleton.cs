@@ -16,10 +16,16 @@ namespace ConcreteGoodsPlantFileImplement
         private readonly string ProductFileName = "Product.xml";
         private readonly string ProductComponentFileName = "ProductComponent.xml";
         private readonly string ClientFileName = "Client.xml";
+        private readonly string WarehouseFileName = "Warehouse.xml";
+        private readonly string WarehouseComponentFileName = "WarehouseComponent.xml";
+
         public List<Component> Components { get; set; }
         public List<Order> Orders { get; set; }
         public List<Product> Products { get; set; }
         public List<ProductComponent> ProductComponents { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
+        public List<WarehouseComponent> WarehouseComponents { get; set; }
+
         public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
@@ -28,6 +34,9 @@ namespace ConcreteGoodsPlantFileImplement
             Products = LoadProducts();
             ProductComponents = LoadProductComponents();
             Clients = LoadClients();
+            Warehouses = LoadWarehouses();
+            WarehouseComponents = LoadWarehouseComponents();
+
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -44,6 +53,8 @@ namespace ConcreteGoodsPlantFileImplement
             SaveProducts();
             SaveProductComponents();
             SaveClients();
+            SaveWarehouses();
+            SaveWarehouseComponents();
         }
         private List<Component> LoadComponents()
         {
@@ -153,6 +164,51 @@ namespace ConcreteGoodsPlantFileImplement
             }
             return list;
         }
+        private List<Warehouse> LoadWarehouses()
+        {
+            var list = new List<Warehouse>();
+
+            if (File.Exists(WarehouseFileName))
+            {
+                XDocument xDocument = XDocument.Load(WarehouseFileName);
+                var xElements = xDocument.Root.Elements("Warehouse").ToList();
+
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Warehouse
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        WarehouseName = elem.Element("WarehouseName").Value
+                    });
+                }
+            }
+
+            return list;
+        }
+
+        private List<WarehouseComponent> LoadWarehouseComponents()
+        {
+            var list = new List<WarehouseComponent>();
+
+            if (File.Exists(WarehouseComponentFileName))
+            {
+                XDocument xDocument = XDocument.Load(WarehouseComponentFileName);
+                var xElements = xDocument.Root.Elements("WarehouseComponent").ToList();
+
+                foreach (var elem in xElements)
+                {
+                    list.Add(new WarehouseComponent
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        WarehouseId = Convert.ToInt32(elem.Element("WarehouseId").Value),
+                        ComponentId = Convert.ToInt32(elem.Element("ComponentId").Value),
+                        Count = Convert.ToInt32(elem.Element("Count").Value)
+                    });
+                }
+            }
+
+            return list;
+        }
         private void SaveComponents()
         {
             if (Components != null)
@@ -239,6 +295,43 @@ namespace ConcreteGoodsPlantFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ProductComponentFileName);
+            }
+        }
+        private void SaveWarehouses()
+        {
+            if (ProductComponents != null)
+            {
+                var xElement = new XElement("Warehouses");
+
+                foreach (var warehouse in Warehouses)
+                {
+                    xElement.Add(new XElement("Warehouse",
+                    new XAttribute("Id", warehouse.Id),
+                    new XElement("WarehouseName", warehouse.WarehouseName)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(WarehouseFileName);
+            }
+        }
+
+        private void SaveWarehouseComponents()
+        {
+            if (WarehouseComponents != null)
+            {
+                var xElement = new XElement("WarehouseComponents");
+
+                foreach (var warehouseComponent in WarehouseComponents)
+                {
+                    xElement.Add(new XElement("WarehouseComponent",
+                    new XAttribute("Id", warehouseComponent.Id),
+                    new XElement("WarehouseId", warehouseComponent.WarehouseId),
+                    new XElement("ComponentId", warehouseComponent.ComponentId),
+                    new XElement("Count", warehouseComponent.Count)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(WarehouseComponentFileName);
             }
         }
     }
