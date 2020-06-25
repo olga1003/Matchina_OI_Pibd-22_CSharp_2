@@ -10,9 +10,10 @@ namespace PlantBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
+        private readonly object locker = new object();
         private readonly IWarehouseLogic warehouseLogic;
         public MainLogic(IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
-        {
+        {           
             this.orderLogic = orderLogic;
             this.warehouseLogic = warehouseLogic;
         }
@@ -30,51 +31,58 @@ namespace PlantBusinessLogic.BusinessLogics
         }
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
+            lock (locker)
             {
-                Id = model.OrderId
-            })?[0];
-            if (order == null)
-            {
-                throw new Exception("Не найден заказ");
-            }
-            if (order.Status != OrderStatus.Принят)
-            {
-                throw new Exception("Заказ не в статусе \"Принят\"");
-            }
-                warehouseLogic.DeleteFromWarehouse(order.ProductId, order.Count);
+                var order = orderLogic.Read(new OrderBindingModel
+                {
+                    Id = model.OrderId
+                })?[0];
+                if (order == null)
+                {
+                    throw new Exception("Не найден заказ");
+                }
+                if (order.Status != OrderStatus.Принят)
+                {
+                    throw new Exception("Заказ не в статусе \"Принят\"");
+                }
+                if (order.ImplementerId.HasValue)
+                {
+                    throw new Exception("У заказа уже есть исполнитель");
+                }
                 orderLogic.CreateOrUpdate(new OrderBindingModel
                 {
-                    ClientId = order.ClientId,
                     Id = order.Id,
+                    ClientId = order.ClientId,
+                    ImplementerId = model.ImplementerId,
                     ProductId = order.ProductId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
-                    DateImplement = null,
+                    DateImplement = DateTime.Now,
                     Status = OrderStatus.Выполняется
                 });
-
+            }
         }
         public void FinishOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
             }
+
             if (order.Status != OrderStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
+
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
                 ProductId = order.ProductId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -84,23 +92,24 @@ namespace PlantBusinessLogic.BusinessLogics
         }
         public void PayOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
+
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
             }
+
             if (order.Status != OrderStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
+
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
                 ProductId = order.ProductId,
+                ImplementerId = model.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
