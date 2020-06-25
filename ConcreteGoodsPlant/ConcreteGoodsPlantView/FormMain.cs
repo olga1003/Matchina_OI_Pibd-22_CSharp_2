@@ -14,12 +14,14 @@ namespace ConcreteGoodsPlantView
         private readonly MainLogic logic;
         private readonly ReportLogic reportLogic;
         private readonly IOrderLogic orderLogic;
+        private readonly WorkModeling work;
 
-        public FormMain(MainLogic logic, ReportLogic reportLogic, IOrderLogic orderLogic)
+        public FormMain(MainLogic logic, ReportLogic reportLogic, WorkModeling work, IOrderLogic orderLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.reportLogic = reportLogic;
+            this.work = work;
             this.orderLogic = orderLogic;
         }
         private void FormMain_Load(object sender, EventArgs e)
@@ -37,6 +39,8 @@ namespace ConcreteGoodsPlantView
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
+
                 }
             }
             catch (Exception ex)
@@ -181,6 +185,18 @@ namespace ConcreteGoodsPlantView
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            work.DoWork();
+            LoadData();
+        }
+
+        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormImplementers>();
+            form.ShowDialog();
         }
     }
 }
