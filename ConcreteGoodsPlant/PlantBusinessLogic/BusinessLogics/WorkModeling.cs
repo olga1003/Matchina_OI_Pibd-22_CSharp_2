@@ -1,8 +1,10 @@
 ﻿using PlantBusinessLogic.BindingModels;
+using PlantBusinessLogic.Enums;
 using PlantBusinessLogic.Interfaces;
 using PlantBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -51,23 +53,50 @@ namespace PlantBusinessLogic.BusinessLogics
                 // отдыхаем
                 Thread.Sleep(implementer.PauseTime);
             }
+            var notEnoughMaterialsOrders = orders
+                .Where(x => x.Status == OrderStatus.Требуются_материалы)
+                .Select(x => x)
+                .ToList();
+            orders.RemoveAll(x => notEnoughMaterialsOrders.Contains(x));
+            this.DoWork(implementer, notEnoughMaterialsOrders);
+
             await Task.Run(() =>
             {
+                this.DoWork(implementer, orders);
+            });
+        }
+        private void DoWork(ImplementerViewModel implementer, List<OrderViewModel> orders)
+        {
             foreach (var order in orders)
             {
                 // пытаемся назначить заказ на исполнителя
                 try
                 {
-                    mainLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
+                    mainLogic.TakeOrderInWork(new ChangeStatusBindingModel
+                    {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+                    Boolean isNotEnoughMaterials = orderLogic.Read(new OrderBindingModel
+                    {
+                        Id = order.Id
+                    }).FirstOrDefault().Status == OrderStatus.Требуются_материалы;
+                    if (isNotEnoughMaterials)
+                    {
+                        continue;
+                    }
                     // делаем работу
                     Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
-                        mainLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id });
-                        // отдыхаем
-                        Thread.Sleep(implementer.PauseTime);
-                    }
-                    catch (Exception) { }
+                    mainLogic.FinishOrder(new ChangeStatusBindingModel
+                    {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+                    // отдыхаем
+                    Thread.Sleep(implementer.PauseTime);
                 }
-            });
+                catch (Exception) { }
+            }
         }
     }
 }
