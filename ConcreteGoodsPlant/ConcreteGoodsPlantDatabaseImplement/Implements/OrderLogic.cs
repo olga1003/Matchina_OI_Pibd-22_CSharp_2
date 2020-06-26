@@ -63,7 +63,8 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                .Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue) ||
+                .Where(rec => model == null || 
+                (rec.Id == model.Id && model.Id.HasValue) ||
                 (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
                 (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
                 (model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue) ||

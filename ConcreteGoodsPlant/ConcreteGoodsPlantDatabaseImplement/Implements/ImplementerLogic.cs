@@ -57,7 +57,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                 return context.Implementers
                 .Where(
                     rec => model == null
-                    || rec.Id == model.Id
+                    || (rec.Id == model.Id)
                 )
                 .Select(rec => new ImplementerViewModel
                 {

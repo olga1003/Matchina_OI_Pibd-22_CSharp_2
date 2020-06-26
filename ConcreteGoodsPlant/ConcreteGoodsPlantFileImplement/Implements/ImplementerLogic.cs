@@ -53,7 +53,7 @@ namespace ConcreteGoodsPlantFileImplement.Implements
             return source.Implementers
             .Where(
                 rec => model == null
-                || rec.Id == model.Id
+                || (rec.Id == model.Id)
             )
             .Select(rec => new ImplementerViewModel
             {
