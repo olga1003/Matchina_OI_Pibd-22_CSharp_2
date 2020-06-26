@@ -22,8 +22,8 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                    Id = rec.Id,
                    WarehouseName = rec.WarehouseName,
                    WarehouseComponents = context.WarehouseComponents
-               .Include(recWC => recWC.Component)
-               .Where(recWC => recWC.WarehouseId == rec.Id).
+                .Include(recWD => recWD.Component)
+               .Where(recWD => recWD.WarehouseId == rec.Id).
                Select(x => new WarehouseComponentViewModel
                {
                    Id = x.Id,
