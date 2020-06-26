@@ -38,13 +38,13 @@ namespace ConcreteGoodsPlantView
             this.buttonDel = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxComponent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -77,18 +77,18 @@ namespace ConcreteGoodsPlantView
             this.groupBoxComponent.Controls.Add(this.buttonAdd);
             this.groupBoxComponent.Controls.Add(this.dataGridView);
             this.groupBoxComponent.Location = new System.Drawing.Point(37, 114);
-            this.groupBoxComponent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxComponent.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxComponent.Name = "groupBoxComponent";
-            this.groupBoxComponent.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxComponent.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxComponent.Size = new System.Drawing.Size(633, 277);
             this.groupBoxComponent.TabIndex = 2;
             this.groupBoxComponent.TabStop = false;
-            this.groupBoxComponent.Text = " компонентs";
+            this.groupBoxComponent.Text = " компоненты";
             // 
             // buttonRef
             // 
             this.buttonRef.Location = new System.Drawing.Point(495, 208);
-            this.buttonRef.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRef.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(116, 30);
             this.buttonRef.TabIndex = 7;
@@ -99,7 +99,7 @@ namespace ConcreteGoodsPlantView
             // buttonUpd
             // 
             this.buttonUpd.Location = new System.Drawing.Point(495, 110);
-            this.buttonUpd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUpd.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUpd.Name = "buttonUpd";
             this.buttonUpd.Size = new System.Drawing.Size(116, 26);
             this.buttonUpd.TabIndex = 6;
@@ -110,7 +110,7 @@ namespace ConcreteGoodsPlantView
             // buttonDel
             // 
             this.buttonDel.Location = new System.Drawing.Point(495, 160);
-            this.buttonDel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(116, 27);
             this.buttonDel.TabIndex = 5;
@@ -121,7 +121,7 @@ namespace ConcreteGoodsPlantView
             // buttonAdd
             // 
             this.buttonAdd.Location = new System.Drawing.Point(495, 47);
-            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(116, 32);
             this.buttonAdd.TabIndex = 4;
@@ -131,22 +131,45 @@ namespace ConcreteGoodsPlantView
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3});
             this.dataGridView.Location = new System.Drawing.Point(8, 23);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.Size = new System.Drawing.Size(467, 234);
             this.dataGridView.TabIndex = 0;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Компонент";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.HeaderText = "Количество";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
             // textBoxName
             // 
             this.textBoxName.Location = new System.Drawing.Point(117, 28);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(480, 22);
             this.textBoxName.TabIndex = 3;
@@ -154,7 +177,7 @@ namespace ConcreteGoodsPlantView
             // textBoxPrice
             // 
             this.textBoxPrice.Location = new System.Drawing.Point(117, 70);
-            this.textBoxPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPrice.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(123, 22);
             this.textBoxPrice.TabIndex = 4;
@@ -162,7 +185,7 @@ namespace ConcreteGoodsPlantView
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(433, 414);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(91, 28);
             this.buttonSave.TabIndex = 9;
@@ -173,31 +196,13 @@ namespace ConcreteGoodsPlantView
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(532, 414);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(93, 28);
             this.buttonCancel.TabIndex = 8;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Id";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Компонент";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Количество";
-            this.Column3.Name = "Column3";
-            this.Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.AllowUserToAddRows = false;
             // 
             // FormProductConcrete
             // 
@@ -211,7 +216,7 @@ namespace ConcreteGoodsPlantView
             this.Controls.Add(this.groupBoxComponent);
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.labelName);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormProductConcrete";
             this.Text = "Изделие";
             this.Load += new System.EventHandler(this.FormProduct_Load);
