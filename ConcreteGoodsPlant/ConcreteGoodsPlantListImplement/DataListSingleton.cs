@@ -13,6 +13,7 @@ namespace ConcreteGoodsPlantListImplement
         public List<Product> Products { get; set; }
         public List<ProductComponent> ProductComponents { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
         private DataListSingleton()
         {
             Components = new List<Component>();
@@ -20,6 +21,7 @@ namespace ConcreteGoodsPlantListImplement
             Products = new List<Product>();
             Clients = new List<Client>();
             ProductComponents = new List<ProductComponent>();
+            Implementers = new List<Implementer>();
         }
         public static DataListSingleton GetInstance()
         {

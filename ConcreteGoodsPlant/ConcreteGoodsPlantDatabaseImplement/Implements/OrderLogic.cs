@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ConcreteGoodsPlantDatabaseImplement.Models;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using PlantBusinessLogic.Enums;
 
 namespace ConcreteGoodsPlantDatabaseImplement.Implements
 {
@@ -31,8 +31,9 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.ProductId = model.ProductId == 0 ? element.ProductId : model.ProductId;
-                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
+                element.ClientId = model.ClientId.Value;
                 element.Count = model.Count;
+                element.ImplementerId = model.ImplementerId;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
                 element.DateCreate = model.DateCreate;
@@ -62,24 +63,31 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
             using (var context = new ConcreteGoodsPlantDatabase())
             {
                 return context.Orders
-                 .Where(rec => model == null || rec.Id == model.Id && model.Id.HasValue
-                    || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
-                    || model.ClientId.HasValue && rec.ClientId == model.ClientId)
-                 .Include(rec => rec.Client)
-                 .Select(rec => new OrderViewModel
-                 {
+                .Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                (model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue) ||
+                (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+                .Include(rec => rec.Product)
+                .Include(rec => rec.Client)
+                .Include(rec => rec.Implementer)
+                .Select(rec => new OrderViewModel
+                {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
+                    ImplementerId = rec.ImplementerId,
                     ProductId = rec.ProductId,
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
+                    Status = rec.Status,
+                    Count = rec.Count,
+                    Sum = rec.Sum,
                     ProductName = rec.Product.ProductName,
-                    ClientFIO = rec.Client.FIO
-                 })
-            .ToList();
+                    ClientFIO = rec.Client.FIO,
+                    ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
+                 
+                })
+                .ToList();
             }
         }
     }

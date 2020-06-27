@@ -14,12 +14,13 @@ namespace ConcreteGoodsPlantView
         private readonly MainLogic logic;
         private readonly ReportLogic reportLogic;
         private readonly IOrderLogic orderLogic;
-
-        public FormMain(MainLogic logic, ReportLogic reportLogic, IOrderLogic orderLogic)
+        private readonly WorkModeling work;
+        public FormMain(MainLogic logic, WorkModeling work, ReportLogic reportLogic, IOrderLogic orderLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.reportLogic = reportLogic;
+            this.work = work;
             this.orderLogic = orderLogic;
         }
         private void FormMain_Load(object sender, EventArgs e)
@@ -37,7 +38,8 @@ namespace ConcreteGoodsPlantView
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
                     dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -54,41 +56,6 @@ namespace ConcreteGoodsPlantView
             LoadData();
         }
 
-        private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    logic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonOrderReady_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    logic.FinishOrder(new ChangeStatusBindingModel { OrderId = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
-                }
-            }
-        }
 
         private void ButtonPayOrder_Click(object sender, EventArgs e)
         {
@@ -152,6 +119,17 @@ namespace ConcreteGoodsPlantView
         {
             var form = Container.Resolve<FormClients>();
             form.ShowDialog();
+        }
+
+        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormImplementers>();
+            form.ShowDialog();
+        }
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            work.DoWork();
         }
     }
 }
