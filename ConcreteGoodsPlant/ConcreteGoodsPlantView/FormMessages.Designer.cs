@@ -40,7 +40,7 @@
             this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
-            this.dataGridView.Size = new System.Drawing.Size(774, 391);
+            this.dataGridView.Size = new System.Drawing.Size(983, 391);
             this.dataGridView.TabIndex = 1;
             // 
             // buttonRef
@@ -57,7 +57,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1009, 450);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.dataGridView);
             this.Name = "FormMessages";

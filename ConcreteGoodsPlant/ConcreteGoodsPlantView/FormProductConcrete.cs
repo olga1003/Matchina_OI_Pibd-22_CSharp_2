@@ -11,7 +11,7 @@ namespace ConcreteGoodsPlantView
 {
     public partial class FormProductConcrete : Form
     {
-   
+
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }

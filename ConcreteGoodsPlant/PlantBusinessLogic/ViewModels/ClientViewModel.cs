@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlantBusinessLogic.Attributes;
+using PlantBusinessLogic.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -6,18 +8,21 @@ using System.Text;
 
 namespace PlantBusinessLogic.ViewModels
 {
-    public class ClientViewModel
+    public class ClientViewModel : BaseViewModel
     {
         [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        [DisplayName("ФИО")]
+        [Column(title: "ФИО", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ClientFIO { get; set; }
         [DataMember]
-        [DisplayName("Логин")]
+        [Column(title: "Почта", width: 150)]
         public string Email { get; set; }
         [DataMember]
-        [DisplayName("Пароль")]
         public string Password { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "FIO",
+            "Email"
+        };
     }
 }
