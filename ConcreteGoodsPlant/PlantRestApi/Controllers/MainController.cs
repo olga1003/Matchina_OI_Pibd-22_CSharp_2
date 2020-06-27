@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConcreteGoodsPlantDatabaseImplement.Implements;
 using PlantBusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using PlantBusinessLogic.BusinessLogics;
@@ -23,21 +22,18 @@ namespace PlantRestApi.Controllers
             _order = order;
             _product = product;
             _main = main;
-        }
+        }        
         [HttpGet]
-        public List<ProductModel> GetProductList() => _product.Read(null)?.Select(rec =>
-       Convert(rec)).ToList();
+        public List<ProductModel> GetProductList() => _product.Read(null)?.Select(rec => Convert(rec)).ToList();
+
         [HttpGet]
-        public ProductModel GetProduct(int productId) => Convert(_product.Read(new
-       ProductConcreteBindingModel
-        { Id = productId })?[0]);
+        public ProductModel GetProduct(int productId) => Convert(_product.Read(new ProductConcreteBindingModel { Id = productId })?[0]);
+
         [HttpGet]
-        public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new
-       OrderBindingModel
-        { ClientId = clientId });
+        public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
+
         [HttpPost]
-        public void CreateOrder(CreateOrderBindingModel model) =>
-       _main.CreateOrder(model);
+        public void CreateOrder(CreateOrderBindingModel model) => _main.CreateOrder(model);
         private ProductModel Convert(ProductViewModel model)
         {
             if (model == null) return null;
