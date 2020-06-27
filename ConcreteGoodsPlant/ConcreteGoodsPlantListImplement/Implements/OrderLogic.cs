@@ -64,6 +64,7 @@ namespace ConcreteGoodsPlantListImplement.Implements
             order.ProductId = model.ProductId;
             order.Count = model.Count;
             order.DateCreate = model.DateCreate;
+            order.ClientId = (int)model.ClientId;
             order.DateImplement = model.DateImplement;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -78,7 +79,8 @@ namespace ConcreteGoodsPlantListImplement.Implements
             foreach (var order in source.Orders)
             {
                 if (model != null && order.Id == model.Id
-                    || model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                    || model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo
+                    || model.ClientId.HasValue && order.ClientId == model.ClientId)
                 {
                     result.Add(CreateViewModel(order));
                     break;
@@ -110,6 +112,7 @@ namespace ConcreteGoodsPlantListImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ProductId = order.ProductId,
                 ProductName = productName,
                 Count = order.Count,

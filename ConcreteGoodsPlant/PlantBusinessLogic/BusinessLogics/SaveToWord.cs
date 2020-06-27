@@ -92,8 +92,7 @@ namespace PlantBusinessLogic.BusinessLogics
                     docRun.AppendChild(new Text
                     {
                         Text = run,
-                        Space =
-                   SpaceProcessingModeValues.Preserve
+                        Space = SpaceProcessingModeValues.Preserve
                     });
                     docParagraph.AppendChild(docRun);
                 }
@@ -106,8 +105,7 @@ namespace PlantBusinessLogic.BusinessLogics
         /// </summary>
         /// <param name="paragraphProperties"></param>
         /// <returns></returns>
-        private static ParagraphProperties
-       CreateParagraphProperties(WordParagraphProperties paragraphProperties)
+        private static ParagraphProperties CreateParagraphProperties(WordParagraphProperties paragraphProperties)
         {
             if (paragraphProperties != null)
             {
@@ -121,14 +119,12 @@ namespace PlantBusinessLogic.BusinessLogics
                     LineRule = LineSpacingRuleValues.Auto
                 });
                 properties.AppendChild(new Indentation());
-                ParagraphMarkRunProperties paragraphMarkRunProperties = new
-               ParagraphMarkRunProperties();
+                ParagraphMarkRunProperties paragraphMarkRunProperties = new ParagraphMarkRunProperties();
                 if (!string.IsNullOrEmpty(paragraphProperties.Size))
                 {
                     paragraphMarkRunProperties.AppendChild(new FontSize
                     {
-                        Val =
-                   paragraphProperties.Size
+                        Val = paragraphProperties.Size
                     });
                 }
                 if (paragraphProperties.Bold)
