@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantRestApi", "PlantRestAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantClientView", "PlantClientView\PlantClientView.csproj", "{7CB354C3-75C5-441C-AB42-DD5638E50AE4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantWarehouseView", "PlantWarehouseView\PlantWarehouseView.csproj", "{C455AD13-17F4-40CF-BE8D-EBCFF650B3BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB354C3-75C5-441C-AB42-DD5638E50AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C455AD13-17F4-40CF-BE8D-EBCFF650B3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C455AD13-17F4-40CF-BE8D-EBCFF650B3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C455AD13-17F4-40CF-BE8D-EBCFF650B3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C455AD13-17F4-40CF-BE8D-EBCFF650B3BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

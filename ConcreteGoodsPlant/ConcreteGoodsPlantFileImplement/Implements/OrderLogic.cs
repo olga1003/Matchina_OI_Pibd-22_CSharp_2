@@ -63,7 +63,8 @@ namespace ConcreteGoodsPlantFileImplement.Implements
            .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
-                ClientId = rec.ClientId,
+               ProductId = rec.ProductId,
+               ClientId = rec.ClientId,
                 ProductName = source.Products.FirstOrDefault(recP => recP.Id == rec.ProductId)?.ProductName,
                 ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.FIO,
                 Count = rec.Count,
