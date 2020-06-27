@@ -34,8 +34,8 @@ namespace PlantWarehouseView
                          WarehouseViewModel view = APIWarehouse.GetRequest<WarehouseViewModel>($"api/warehouse/getwarehouse?warehouseId={id.Value}");
                          if (view != null)
                          {
-                             warehouseNameLabel.Text = view.WarehouseName;
-                             warehouseComponent = view.WarehouseComponents;
+                        warehouseNameTextBox.Text = view.WarehouseName;
+                        warehouseComponent = view.WarehouseComponents;
                              LoadData();
                          }
                      }
@@ -69,7 +69,7 @@ namespace PlantWarehouseView
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(warehouseNameLabel.Text))
+            if (string.IsNullOrEmpty(warehouseNameTextBox.Text))
             {
                 MessageBox.Show("Заполните поле Название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -79,7 +79,7 @@ namespace PlantWarehouseView
                 APIWarehouse.PostRequest("api/Warehouse/createorupdatewarehouse", new WarehouseBindingModel
                 {
                     Id = id,
-                    WarehouseName = warehouseNameLabel.Text
+                    WarehouseName = warehouseNameTextBox.Text
                 });
                 MessageBox.Show("Успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
