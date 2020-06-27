@@ -53,10 +53,11 @@ namespace PlantBusinessLogic.BusinessLogics
                 // отдыхаем
                 Thread.Sleep(implementer.PauseTime);
             }
-            var notEnoughMaterialsOrders = orders
-                .Where(x => x.Status == OrderStatus.Требуются_материалы)
-                .Select(x => x)
-                .ToList();
+            // ищем заказы со статусом «Требуются материалы»
+            var notEnoughMaterialsOrders = orderLogic.Read(new OrderBindingModel
+            {
+                NotEnoughMaterialsOrders = true
+            });
             orders.RemoveAll(x => notEnoughMaterialsOrders.Contains(x));
             this.DoWork(implementer, notEnoughMaterialsOrders);
 
