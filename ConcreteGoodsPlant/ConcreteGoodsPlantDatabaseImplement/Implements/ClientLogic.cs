@@ -18,7 +18,7 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
                 Client element = context.Clients.FirstOrDefault(rec => rec.Email == model.Email && rec.Id != model.Id);
                 if (element != null)
                 {
-                    throw new Exception("Уже есть такой клиент");
+                    throw new Exception("Уже есть  клиент с таким именем");
                 }
                 if (model.Id.HasValue)
                 {
