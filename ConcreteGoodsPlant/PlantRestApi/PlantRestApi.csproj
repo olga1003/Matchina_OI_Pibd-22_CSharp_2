@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.11.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConcreteGoodsPlantDatabaseImplement\ConcreteGoodsPlantDatabaseImplement.csproj" />
+    <ProjectReference Include="..\PlantBusinessLogic\PlantBusinessLogic.csproj" />
+  </ItemGroup>
+
+
+</Project>
