@@ -16,10 +16,22 @@ namespace ConcreteGoodsPlantDatabaseImplement.Implements
         {
             using (var context = new ConcreteGoodsPlantDatabase())
             {
-                Implementer element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
+                Implementer element = context.Implementers.FirstOrDefault(rec => rec.ImplementerFIO == model.ImplementerFIO && rec.Id == model.Id);
 
-                if (element == null)
+                if (element != null)
                 {
+                    throw new Exception("Уже есть исполнитель с таким фио");
+                }
+                if (model.Id.HasValue)
+                {
+                    element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
+                    if (element == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                }
+                else
+                {                
                     element = new Implementer();
                     context.Implementers.Add(element);
                 }

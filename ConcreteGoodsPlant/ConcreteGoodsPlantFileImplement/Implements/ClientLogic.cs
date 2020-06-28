@@ -24,7 +24,7 @@ namespace ConcreteGoodsPlantFileImplement.Implements
 
             if (element != null)
             {
-                throw new Exception("Уже есть компонент с таким названием");
+                throw new Exception("Уже есть клиент с таким названием");
             }
 
             if (model.Id.HasValue)
@@ -67,8 +67,8 @@ namespace ConcreteGoodsPlantFileImplement.Implements
             return source.Clients
             .Where(
                 rec => model == null
-                || rec.Id == model.Id
-                || rec.Email == model.Email && rec.Password == model.Password
+                || (rec.Id == model.Id)
+                || (rec.Email == model.Email && rec.Password == model.Password)
             )
             .Select(rec => new ClientViewModel
             {

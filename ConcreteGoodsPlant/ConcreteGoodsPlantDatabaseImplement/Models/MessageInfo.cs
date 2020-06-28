@@ -17,6 +17,8 @@ namespace ConcreteGoodsPlantDatabaseImplement.Models
         public DateTime DateDelivery { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
+        public Client Client { get; set; }
+
     }
 
 }
